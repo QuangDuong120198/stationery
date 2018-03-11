@@ -37,7 +37,13 @@
     <div class="container">
         <div class="row" style="padding-left:10px;margin-left:30px;margin-right:2px">
             <div class="col-xxs-12 banner-xs">
-                    <img src="<?php echo 'data:image/png;base64,'.$constants['logo']; ?>" alt="" />
+                    <div style="position:relative;">
+                        <img src="<?php echo 'data:image/png;base64,'.$constants['logo']; ?>" alt="logo" />
+                        <span style="position:absolute;z-index:2;top:15px;font-family:'Dancing Script',serif;font-weight:bold;color:#0000cc;">
+                            <span style="font-size:16px;">Văn phòng phẩm</span><br />
+                            <span style="font-size:24px;">Xuân Thủy</span>
+                        </span>
+                    </div>
                     <span>
                         <a href="javascript:void(0)" class="btn btn-md mybtn" id="btn-search"><i class="fa fa-search"></i></a>
                         <a href="javascript:void(0)" class="btn btn-md mybtn" data-toggle="modal" data-target="#shopping-list" type="button" style="position:relative">
