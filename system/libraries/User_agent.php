@@ -2,17 +2,6 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-/**
- * User Agent Class
- *
- * Identifies the platform, browser, robot, or mobile device of the browsing agent
- *
- * @package		CodeIgniter
- * @subpackage	Libraries
- * @category	User Agent
- * @author		EllisLab Dev Team
- * @link		https://codeigniter.com/user_guide/libraries/user_agent.html
- */
 class CI_User_agent {
 
 	/**

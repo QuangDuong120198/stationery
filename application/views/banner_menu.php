@@ -3,14 +3,14 @@
     <div class="container">
         <div class="row banner hidden-xs">
             <div class="col-lg-3 col-md-3 col-sm-3 hidden-xs" style="text-align:center">
-                <img class="logo" alt="Văn phòng phẩm Xuân Thủy" src="<?php echo 'data:image/png;base64,'.$constants['logo']; ?>" />
+                <img class="logo" alt="Văn phòng phẩm Xuân Thủy" src="<?php echo 'data:image/png;base64,'.($constants['logo']? $constants['logo'] : ''); ?>" />
             </div>
             <div class="col-lg-9 col-md-9 col-sm-9 hidden-xs">
                 <span class="contact">
-                    <div style="font-size:16px;"><i class="fa fa-phone"></i>&nbsp;<?php echo $constants['phone']; ?></div>
-                    <div><i class="fa fa-envelope"></i>&nbsp;<?php echo $constants['mail']; ?></div>
+                    <div style="font-size:16px;"><i class="fa fa-phone"></i>&nbsp;<?php echo $constants['phone']? $constants['phone'] : ''; ?></div>
+                    <div><i class="fa fa-envelope"></i>&nbsp;<?php echo $constants['mail']? $constants['mail'] : ''; ?></div>
                 </span>
-                <h2 class="title"><a href="javascript:void(0)">Văn phòng phẩm Xuân Thủy</a></h2>
+                <h2 class="title"><a href="<?php echo base_url().'home'; ?>">Văn phòng phẩm Xuân Thủy</a></h2>
                 <div class="stuffs">
                     <div class="search">
                         <form method="get" action="">
@@ -23,7 +23,7 @@
                         </form>
                     </div>
                     <div class="cart">
-                        <a class="btn btn-md mybtn" href="javascript:void(0)" data-toggle="modal" data-target="#shopping-list" style="position:relative;">
+                        <a class="btn btn-md mybtn" data-toggle="modal" data-target="#shopping-list" style="position:relative;">
                             <i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Giỏ hàng
                             <span style="position:absolute;z-index:5;background-color:#ff0000;border-radius:5px;font-weight:bold;padding:0 5px;top:-10px;right:-8px;">0</span>
                         </a>
@@ -37,20 +37,22 @@
     <div class="container">
         <div class="row" style="padding-left:10px;margin-left:30px;margin-right:2px">
             <div class="col-xxs-12 banner-xs">
-                    <div style="position:relative;">
-                        <img src="<?php echo 'data:image/png;base64,'.$constants['logo']; ?>" alt="logo" />
-                        <span style="position:absolute;z-index:2;top:15px;font-family:'Dancing Script',serif;font-weight:bold;color:#0000cc;">
+                <div style="position:relative;">
+                    <img src="<?php echo 'data:image/png;base64,'.($constants['logo'] ? $constants['logo'] : ''); ?>" alt="logo" />
+                    <span style="position:absolute;z-index:2;top:15px;font-family:'Dancing Script',serif;font-weight:bold;color:#0000cc;">
+                        <a href="<?php echo base_url().'home'; ?>">
                             <span style="font-size:16px;">Văn phòng phẩm</span><br />
                             <span style="font-size:24px;">Xuân Thủy</span>
-                        </span>
-                    </div>
-                    <span>
-                        <a href="javascript:void(0)" class="btn btn-md mybtn" id="btn-search"><i class="fa fa-search"></i></a>
-                        <a href="javascript:void(0)" class="btn btn-md mybtn" data-toggle="modal" data-target="#shopping-list" type="button" style="position:relative">
-                            <i class="fa fa-shopping-cart"></i>
-                            <span style="position:absolute;z-index:5;background-color:#ff0000;border-radius:5px;font-weight:bold;padding:0 5px;top:-10px;right:-8px;">0</span>
                         </a>
                     </span>
+                </div>
+                <span>
+                    <a href="javascript:void(0)" class="btn btn-md mybtn" id="btn-search"><i class="fa fa-search"></i></a>
+                    <a href="javascript:void(0)" class="btn btn-md mybtn" data-toggle="modal" data-target="#shopping-list" type="button" style="position:relative">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span style="position:absolute;z-index:5;background-color:#ff0000;border-radius:5px;font-weight:bold;padding:0 5px;top:-10px;right:-8px;">0</span>
+                    </a>
+                </span>
                 <div class="search-xs">
                     <div class="container-fluid">
                         <div class="row">
@@ -81,11 +83,11 @@
         </div>
         <div class="collapse navbar-collapse" id="menu">
             <ul class="nav navbar-nav">
-                <li><a href="javascript:void(0)">Sản phẩm</a></li>
-                <li><a href="javascript:void(0)">Giới thiệu</a></li>
-                <li><a href="javascript:void(0)">Bảng giá</a></li>
-                <li><a href="javascript:void(0)">Khuyến mại</a></li>
-                <li><a href="javascript:void(0)">Liên hệ</a></li>
+                <li><a href="<?php echo base_url().'home'; ?>" <?php echo $page=='Home' ? 'style="background-color:#333399;"' : ''; ?>>Sản phẩm</a></li>
+                <li><a href="<?php echo base_url().'introduce'; ?>" <?php echo $page=='Introduce' ? 'style="background-color:#333399;"' : ''; ?>>Giới thiệu</a></li>
+                <li><a href="<?php echo base_url().'price'; ?>" <?php echo $page=='Price' ? 'style="background-color:#333399;"' : ''; ?>>Bảng giá</a></li>
+                <li><a href="<?php echo base_url().'sale'; ?>" <?php echo $page=='Sale' ? 'style="background-color:#333399;"' : ''; ?>>Khuyến mại</a></li>
+                <li><a href="<?php echo base_url().'contact'; ?>" <?php echo $page=='Contact' ? 'style="background-color:#333399;"' : ''; ?>>Liên hệ</a></li>
             </ul>
         </div>
     </div>

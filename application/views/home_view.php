@@ -4,21 +4,12 @@
 <head>
 <?php echo $headtag; ?>
 </head>
-<body>
-<div class="modal fade" id="shopping-list">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title" style="font-weight:bold;margin:0"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Giỏ hàng</h4>
-            </div>
-            <div class="modal-body">
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
+<body style="padding-right:0!important">
+<div>
+    <img class="example" style="width:200px;" src="" alt="" />
 </div>
+<?php echo $cart; ?>
+
 <div class="container-fluid">
 
 <?php echo $banner_menu; ?>
@@ -38,13 +29,13 @@
 <?php foreach($products as $row): ?>
                                     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 col-xxs-12">
                                         <div>
-                                            <div class="myitem" data-product-id="<?php echo $row['id']; ?>">
+                                            <div class="list-item" data-product-id="<?php echo $row['id']; ?>">
                                                 <a href="javascript:void(0)"><strong title="<?php echo $row['name']; ?>"><?php echo $row['name']; ?></strong></a>
-                                                <div class="img-thumbnail" style="background-image:url(<?php echo "data:image/jpeg;base64,".$row['image']; ?>);background-position:center;background-repeat:no-repeat;background-size:contain;">
+                                                <div class="img-thumbnail" title="<?php echo $row['name']; ?>" style="background-image:url(<?php echo base_url()."product-image/".$row['id'].".png"; ?>);">
                                                 </div>
                                                 <p><b><?php echo number_format($row['price']); ?> đ</b></p>
                                                 <div>
-                                                    <a href="javascript:void(0)" class="btn btn-sm mybtn">Đặt mua</a>
+                                                    <a href="javascript:void(0)" class="btn btn-sm mybtn buy">Đặt mua</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -55,6 +46,9 @@
                                     <div class="col-xs-12" style="text-align:center;">
                                         <ul class="pagination">
                                             <li><a href="javascript:void(0)" title="Trang trước"><i class="fa fa-chevron-left"></i></a></li>
+                                            <li><a href="javascript:void(0)"><b>1</b></a></li>
+                                            <li><a href="javascript:void(0)"><b>2</b></a></li>
+                                            <li><a href="javascript:void(0)"><b>3</b></a></li>
                                             <li><a href="javascript:void(0)" title="Trang sau"><i class="fa fa-chevron-right"></i></a></li>
                                         </ul>
                                     </div>

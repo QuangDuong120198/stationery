@@ -1,18 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-/**
- * CodeIgniter File Helpers
- *
- * @package		CodeIgniter
- * @subpackage	Helpers
- * @category	Helpers
- * @author		EllisLab Dev Team
- * @link		https://codeigniter.com/user_guide/helpers/file_helper.html
- */
-
-// ------------------------------------------------------------------------
-
 if ( ! function_exists('write_file'))
 {
 	/**

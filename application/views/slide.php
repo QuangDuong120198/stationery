@@ -34,8 +34,8 @@
     </div>
     <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12 col-xxs-12">
         <div class="contact" style="margin-bottom:20px;">
-            <div style="font-size:16px;"><i class="fa fa-phone"></i>&nbsp;<?php echo $constants['phone']; ?></div>
-            <div><i class="fa fa-envelope"></i>&nbsp;<?php echo $constants['mail']; ?></div>
+            <div style="font-size:16px;"><i class="fa fa-phone"></i>&nbsp;<?php echo $constants['phone']? $constants['phone'] : ''; ?></div>
+            <div><i class="fa fa-envelope"></i>&nbsp;<?php echo $constants['mail']? $constants['mail'] : ''; ?></div>
         </div>
         <div id="advertisement" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
