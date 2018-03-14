@@ -118,6 +118,5 @@ switch (ENVIRONMENT)
         exit(3); // EXIT_CONFIG
     }
     define('VIEWPATH', $view_folder.DIRECTORY_SEPARATOR);
-
 require_once BASEPATH.'core'. DIRECTORY_SEPARATOR .'CodeIgniter.php';
 ?>
