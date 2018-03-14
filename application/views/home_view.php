@@ -5,9 +5,6 @@
 <?php echo $headtag; ?>
 </head>
 <body style="padding-right:0!important">
-<div>
-    <img class="example" style="width:200px;" src="" alt="" />
-</div>
 <?php echo $cart; ?>
 
 <div class="container-fluid">
@@ -31,7 +28,7 @@
                                         <div>
                                             <div class="list-item" data-product-id="<?php echo $row['id']; ?>">
                                                 <a href="javascript:void(0)"><strong title="<?php echo $row['name']; ?>"><?php echo $row['name']; ?></strong></a>
-                                                <div class="img-thumbnail" title="<?php echo $row['name']; ?>" style="background-image:url(<?php echo base_url()."product-image/".$row['id'].".png"; ?>);">
+                                                <div class="img-thumbnail" title="<?php echo $row['name']; ?>" style="background-image:url(<?php echo "data:image/jpeg;base64,".$row['image']; ?>);">
                                                 </div>
                                                 <p><b><?php echo number_format($row['price']); ?> đ</b></p>
                                                 <div>
