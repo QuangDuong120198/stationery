@@ -9,6 +9,7 @@ class Home extends MY_Controller
     public function index($page = 1)
     {
         $data['constants'] = json_decode($this->db->get('/constants'),TRUE);
+        $data['category'] = json_decode($this->db->get('/category'),TRUE);
         $data['slide'] = $this->load->view('slide.php',$data,TRUE);
         $data['page'] = get_class($this);
         $data['cart'] = $this->load->view('cart.php',$data,TRUE);
@@ -22,6 +23,7 @@ class Home extends MY_Controller
         $data['cur_page'] = ((int)$page < 1 || (int)$page > $data['pages'] || !$page) ? 1 : (int)$page;
         $data['products'] = array_slice($data['all_products'], 12*($data['cur_page']-1), 12);
         $this->load->view('home_view.php',$data);
+        /*
         foreach(glob(FCPATH.'image'.DIRECTORY_SEPARATOR.'*') as $row)
         {
             unlink($row);
@@ -31,5 +33,6 @@ class Home extends MY_Controller
             file_put_contents(FCPATH.DIRECTORY_SEPARATOR.'image'.DIRECTORY_SEPARATOR.$row['id'].'.jpg', base64_decode($row[
                 'image']));
         }
+        */
     }
 }

@@ -8,6 +8,7 @@ class Price extends MY_Controller
     }
     public function index()
     {
+        $data['bills'] = json_decode($this->db->get('/bills'),TRUE);
         $data['constants'] = json_decode($this->db->get('/constants'),TRUE);
         $data['cart'] = $this->load->view('cart.php',$data,TRUE);
         $data['page'] = get_class($this);

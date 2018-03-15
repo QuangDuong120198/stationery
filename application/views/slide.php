@@ -3,33 +3,23 @@
     <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 col-xxs-12" style="padding-bottom:15px;">
         <div class="category hidden-sm hidden-xs">
             <div>
-                <a href="javascript:void(0)" class="category-header mybtn"><span>Danh mục&nbsp;<i class="fa fa-chevron-down" style="float:right;"></i></span></a>
+                <a href="javascript:void(0)" class="category-header mybtn"><span>DANH MỤC&nbsp;<i class="fa fa-chevron-down" style="float:right;"></i></span></a>
             </div>
-            <div class="category-item-lg"><a href="javascript:void(0)">Giấy, sổ tay</a></div>
-            <div class="category-item-lg"><a href="javascript:void(0)">Bút</a></div>
-            <div class="category-item-lg"><a href="javascript:void(0)">Cặp hồ sơ, tài liệu</a></div>
-            <div class="category-item-lg"><a href="javascript:void(0)">Mực</a></div>
-            <div class="category-item-lg"><a href="javascript:void(0)">Bảng</a></div>
-            <div class="category-item-lg"><a href="javascript:void(0)">Băng dính, hồ dán</a></div>
-            <div class="category-item-lg"><a href="javascript:void(0)">Kéo, dao rọc giấy</a></div>
-            <div class="category-item-lg"><a href="javascript:void(0)">Kéo, dao rọc giấy</a></div>
-            <div class="category-item-lg"><a href="javascript:void(0)">Kéo, dao rọc giấy</a></div>
-            <div class="category-item-lg"><a href="javascript:void(0)">Sản phẩm khác</a></div>
+            <div class="inner-category">
+<?php foreach($category as $row){ ?>
+                <div class="category-item-lg"><a href="javascript:void(0)"><?php echo $row; ?></a></div>
+<?php }?>
+            </div>
         </div>
         <div class="category visible-sm visible-xs">
             <div id="category-toggle">
-                <a href="javascript:void(0)" class="category-header mybtn"><span>Danh mục&nbsp;<i class="fa fa-chevron-down" style="float:right;"></i></span></a>
+                <a href="javascript:void(0)" class="category-header mybtn"><span>DANH MỤC&nbsp;<i class="fa fa-chevron-down" style="float:right;"></i></span></a>
             </div>
-            <div class="category-item"><a href="javascript:void(0)">Giấy, sổ tay</a></div>
-            <div class="category-item"><a href="javascript:void(0)">Bút</a></div>
-            <div class="category-item"><a href="javascript:void(0)">Cặp hồ sơ, tài liệu</a></div>
-            <div class="category-item"><a href="javascript:void(0)">Mực</a></div>
-            <div class="category-item"><a href="javascript:void(0)">Bảng</a></div>
-            <div class="category-item"><a href="javascript:void(0)">Băng dính, hồ dán</a></div>
-            <div class="category-item"><a href="javascript:void(0)">Kéo, dao rọc giấy</a></div>
-            <div class="category-item"><a href="javascript:void(0)">Kéo, dao rọc giấy</a></div>
-            <div class="category-item"><a href="javascript:void(0)">Kéo, dao rọc giấy</a></div>
-            <div class="category-item"><a href="javascript:void(0)">Sản phẩm khác</a></div>
+            <div class="inner-category">
+<?php foreach($category as $row){ ?>
+                <div class="category-item"><a href="javascript:void(0)"><?php echo $row; ?></a></div>
+<?php } ?>
+            </div>
         </div>
     </div>
     <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12 col-xxs-12">

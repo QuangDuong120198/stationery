@@ -42,11 +42,8 @@
                                 <div class="row">
                                     <div class="col-xs-12" style="text-align:center;">
                                         <ul class="pagination">
-                                            <li><a href="javascript:void(0)" title="Trang trước"><i class="fa fa-chevron-left"></i></a></li>
-                                            <li><a href="javascript:void(0)"><b>1</b></a></li>
-                                            <li><a href="javascript:void(0)"><b>2</b></a></li>
-                                            <li><a href="javascript:void(0)"><b>3</b></a></li>
-                                            <li><a href="javascript:void(0)" title="Trang sau"><i class="fa fa-chevron-right"></i></a></li>
+                                            <li><a href="<?php echo $cur_page<=1? 'javascript:void(0)' : base_url().'home/index/'.($cur_page-1); ?>" title="Trang trước"><i class="fa fa-chevron-left"></i></a></li>
+                                            <li><a href="<?php echo $cur_page>=$pages ? 'javascript:void(0)' : base_url().'home/index/'.($cur_page+1); ?>" title="Trang sau"><i class="fa fa-chevron-right"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>
