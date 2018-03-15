@@ -16,23 +16,12 @@ class Home extends MY_Controller
         $data['headtag'] = $this->load->view('headtag.php',$data,TRUE);
         $data['banner_menu'] = $this->load->view('banner_menu.php',$data,TRUE);
         $data['footer'] = $this->load->view('footer.php',$data,TRUE);
-        /*-- PAGINATION --*/
+        /* -- PAGINATION -- */
         $date['items_per_page'] = 12;
         $data['all_products'] = json_decode($this->db->get('/products'),TRUE);
-        $data['pages'] = count($data['all_products']);
-        $data['cur_page'] = ((int)$page < 1 || (int)$page > $data['pages'] || !$page) ? 1 : (int)$page;
+        $data['pages'] = ceil(count($data['all_products'])/12);
+        $data['cur_page'] = ((int)$page < 1 || !$page) ? 1 : (int)$page;
         $data['products'] = array_slice($data['all_products'], 12*($data['cur_page']-1), 12);
         $this->load->view('home_view.php',$data);
-        /*
-        foreach(glob(FCPATH.'image'.DIRECTORY_SEPARATOR.'*') as $row)
-        {
-            unlink($row);
-        }
-        foreach($data['products'] as $row)
-        {
-            file_put_contents(FCPATH.DIRECTORY_SEPARATOR.'image'.DIRECTORY_SEPARATOR.$row['id'].'.jpg', base64_decode($row[
-                'image']));
-        }
-        */
     }
 }
