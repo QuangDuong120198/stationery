@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <div class="row all-items">
-    <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 col-xxs-12" style="padding-bottom:15px;">
+    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 col-xxs-12" style="padding-bottom:15px;">
         <div class="category hidden-sm hidden-xs">
             <div>
                 <a href="javascript:void(0)" class="category-header mybtn"><span>DANH MỤC&nbsp;<i class="fa fa-chevron-down" style="float:right;"></i></span></a>
@@ -22,7 +22,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12 col-xxs-12">
+    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 col-xxs-12">
         <div class="contact" style="margin-bottom:20px;">
             <div style="font-size:16px;"><i class="fa fa-phone"></i>&nbsp;<?php echo $constants['phone']? $constants['phone'] : ''; ?></div>
             <div><i class="fa fa-envelope"></i>&nbsp;<?php echo $constants['mail']? $constants['mail'] : ''; ?></div>

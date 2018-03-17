@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row banner hidden-xs">
             <div class="col-lg-3 col-md-3 col-sm-3 hidden-xs" style="text-align:center">
-                <img class="logo" alt="Văn phòng phẩm Xuân Thủy" src="<?php echo 'data:image/png;base64,'.($constants['logo']? $constants['logo'] : ''); ?>" />
+                <img class="logo" alt="Văn phòng phẩm Xuân Thủy" src="<?php echo ($constants['logo']? $constants['logo'] : ''); ?>" />
             </div>
             <div class="col-lg-9 col-md-9 col-sm-9 hidden-xs">
                 <span class="contact">
@@ -38,8 +38,8 @@
         <div class="row" style="padding-left:10px;margin-left:30px;margin-right:2px">
             <div class="col-xxs-12 banner-xs">
                 <div style="position:relative;">
-                    <img src="<?php echo 'data:image/png;base64,'.($constants['logo'] ? $constants['logo'] : ''); ?>" alt="logo" />
-                    <span style="position:absolute;z-index:2;top:15px;font-family:'Dancing Script',serif;font-weight:bold;color:#0000cc;">
+                    <img src="<?php echo ($constants['logo'] ? $constants['logo'] : ''); ?>" alt="logo" />
+                    <span style="position:absolute;z-index:2;top:15px;font-family:'Palatino Linotype','Linotype', 'Book-Antiqua',serif;font-weight:bold;color:#0000cc;">
                         <a href="<?php echo base_url().'home'; ?>">
                             <span style="font-size:16px;">Văn phòng phẩm</span><br />
                             <span style="font-size:24px;">Xuân Thủy</span>

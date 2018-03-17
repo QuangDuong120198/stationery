@@ -18,24 +18,8 @@ var config = {
     storageBucket: "newdatabase-e8f02.appspot.com"
 };
 firebase.initializeApp(config);
-/*
-firebase.storage().ref().child('1.jpg').getDownloadURL().then(function(url) {
-    var xhr = new XMLHttpRequest();
-    xhr.responseType = 'blob';
-    xhr.onload = function(event) {
-        var blob = xhr.response;
-    };
-    xhr.open('GET', url);
-    xhr.send();
-    var img = document.getElementById('myimg');
-    img.src = url;
-}).catch(function(error) {
-    console.log(error);
-});
-*/
 </script>
 <style>
-/* #004fa9; */
 .sidebar{position:fixed;top:0;left:0;height:100%;overflow:auto;width:220px;background-color:#393939;color:#f5f5f0;z-index:100;transition:0.4s;word-wrap:break-word;box-shadow:0 0 5px #000000;}
 .sidebar > a{display:block;padding:8px 10px;color:#f5f5f0!important;position:relative;padding-right:30px;}
 .sidebar a:focus, .sidebar a:hover{text-decoration: none;}
@@ -52,7 +36,7 @@ firebase.storage().ref().child('1.jpg').getDownloadURL().then(function(url) {
         <span class="sidebar-collapse"><i style="font-weight:bold;font-size:150%;cursor:pointer;">&times;</i></span>
     </div>
     <div style="text-align:center;font-weight:bold;border-bottom:1px solid #cccccc;padding-bottom:15px;padding-left:8px;padding-right:8px;">
-        <img src="data:image/png;base64,<?php echo $constants['logo']; ?>" style="width:120px;" /><br />Văn phòng phẩm Xuân Thủy
+        <img src="<?php echo $constants['logo']; ?>" style="width:120px;" /><br />Văn phòng phẩm Xuân Thủy
     </div>
     <a href="javascript:void(0)" data-toggle="collapse" data-target="#item1" aria-expanded="true" aria-controls="item1">
         <i class="fa fa-home"></i>&nbsp;Trang chủ
@@ -128,10 +112,6 @@ firebase.storage().ref().child('1.jpg').getDownloadURL().then(function(url) {
                 </div>
             </div>
             <div class="col-xxs-12">
-                <form onsubmit="return false" enctype="multipar/form-data">
-                    <input type="file" id="uploadFile" name="uploadFile" />
-                    <button type="button" id="my-btn">Upload</button>
-                </form>
             </div>
         </div>
     </div>
@@ -139,9 +119,6 @@ firebase.storage().ref().child('1.jpg').getDownloadURL().then(function(url) {
 </body>
 <script>
 $(document).ready(function(){
-    $("#my-btn").click(function(){
-        
-    });
     $(window, "body").resize(function(){
         if($(window).width()<=992)
         {
