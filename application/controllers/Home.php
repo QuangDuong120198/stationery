@@ -38,7 +38,10 @@ class Home extends MY_Controller
         }
         else
         {
-            $data['display_page'] = array(1,2,3,4,5);
+            for($i=1 ; $i <= $data['pages'] ; $i++)
+            {
+                array_push($data['display_page'],$i);
+            }
         }
         $data['products'] = array_slice($data['all_products'], 12*($data['cur_page']-1), 12);
         $this->load->view('home_view.php',$data);
@@ -68,7 +71,10 @@ class Home extends MY_Controller
             }
             else
             {
-                $data['display_page'] = array(1,2,3,4,5);
+                for($i=1 ; $i <= $data['pages'] ; $i++)
+                {
+                    array_push($data['display_page'],$i);
+                }
             }
             $data['products'] = array_slice($data['all_products'], 12*($data['cur_page']-1), 12);
             $json['products_view'] = $this->load->view('products.php',$data,TRUE);

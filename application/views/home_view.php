@@ -3,44 +3,8 @@
 <html>
 <head>
 <?php echo $headtag; ?>
-<style>
-.modal-dialog{
-    width:100%;
-    padding-left:15px;
-}
-</style>
 </head>
 <body style="padding-right:0!important">
-<div class="modal fade" id="view-product">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" style="outline:0;" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="carousel" id="inner-view-product" data-ride="carousel">
-                    <div class="carousel-inner" role="listbox">
-                        <div class="item active">
-                            <div style="width:100%;padding-top:40%;background-color:#f00;"></div>
-                        </div>
-                        <div class="item">
-                            <div style="width:100%;padding-top:40%;background-color:#0f0;"></div>
-                        </div>
-                        <div class="item">
-                            <div style="width:100%;padding-top:40%;background-color:#00f;"></div>
-                        </div>
-                    </div>
-                    <a class="left carousel-control custom" href="#inner-view-product" role="button" data-slide="prev">
-                        <span class="fa fa-chevron-left" aria-hidden="true"></span>
-                    </a>
-                    <a class="right carousel-control custom" href="#inner-view-product" role="button" data-slide="next">
-                        <span class="fa fa-chevron-right" aria-hidden="true"></span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="container-fluid">
 
 <?php echo $banner_menu; ?>
@@ -58,10 +22,10 @@
 <!-- START HERE -->
                             <div class="container-fluid">
                                 <div class="row list">
-<?php foreach($products as $row): ?>
+<?php $j=0; foreach($products as $row): ?>
                                     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 col-xxs-12">
-                                        <div>
-                                            <div class="list-item" data-product-id="<?php echo $row['id']; ?>">
+                                        <div data-toggle="modal" data-target="#view-product" data-slide-index="<?php echo $j; ?>">
+                                            <div class="list-item">
                                                 <div class="img-thumbnail" title="<?php echo $row['name']; ?>" style="background-image:url();">
 <?php if($row['discount']>0):?>
                                                     <span class="discount"><?php echo -$row['discount'].'%'; ?></span>
@@ -72,7 +36,7 @@
                                             </div>
                                         </div>
                                     </div>
-<?php endforeach; ?>
+<?php $j++; endforeach; ?>
                                 </div>
                                 <div class="row">
                                     <div class="col-xxs-12" style="text-align:center;">
@@ -86,8 +50,54 @@
                                     </div>
                                 </div>
                             </div>
+<div class="modal" id="view-product">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content modal-dark">
+            <div class="modal-body">
+                <div class="carousel" id="inner-view-product" data-ride="carousel" data-interval="false">
+                    <div class="carousel-inner" role="listbox">
+<?php $i=0; foreach($products as $row): ?>
+                        <div class="item <?php echo $i==0? 'active' : ''; ?>">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-8 col-sm-7 col-xs-7 col-xxs-12">
+                                        <div class=""></div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-5 col-xs-5 col-xxs-12">
+                                        <?php echo $row['name']; ?>
+                                        <?php echo $row['price']; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+<?php $i++; endforeach; ?>
+                    </div>
+                    <a class="left carousel-control custom" href="#inner-view-product" role="button" data-slide="prev">
+                        <span class="fa fa-chevron-left" aria-hidden="true"></span>
+                    </a>
+                    <a class="right carousel-control custom" href="#inner-view-product" role="button" data-slide="next">
+                        <span class="fa fa-chevron-right" aria-hidden="true"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
 $(document).ready(function(){
+    $("#view-product").on("shown.bs.modal",function(){
+        $(window).keydown(function(e){
+            if(e.keyCode===37){
+                $("#inner-view-product").carousel('prev');
+            }else if(e.keyCode===39){
+                $("#inner-view-product").carousel('next');
+            }
+        });
+    });
+    $("[data-target='#view-product']").click(function(){
+        var index = parseInt($(this).attr("data-slide-index"));
+        $("#inner-view-product").carousel(index);
+    });
     $("[data-page]").click(function(){
         var page = $(this).attr('data-page');
         $.ajax({
