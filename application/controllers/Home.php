@@ -44,6 +44,7 @@ class Home extends MY_Controller
             }
         }
         $data['products'] = array_slice($data['all_products'], 12*($data['cur_page']-1), 12);
+        $data['display_products'] = $this->load->view('products.php',$data,TRUE);
         $this->load->view('home_view.php',$data);
     }
     public function get_products()

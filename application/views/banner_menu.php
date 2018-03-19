@@ -25,7 +25,7 @@
                     <div class="cart">
                         <a class="btn btn-md mybtn" data-toggle="modal" data-target="#shopping-list" style="position:relative;">
                             <i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Giỏ hàng
-                            <span style="position:absolute;z-index:5;background-color:#ff0000;border-radius:5px;font-weight:bold;padding:0 5px;top:-10px;right:-8px;">0</span>
+                            <span class="products-in-cart"><?php echo get_cookie("cart") ? count(json_decode(get_cookie("cart"),TRUE)) : 0; ?></span>
                         </a>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                     <a href="javascript:void(0)" class="btn btn-md mybtn" id="btn-search"><i class="fa fa-search"></i></a>
                     <a href="javascript:void(0)" class="btn btn-md mybtn" data-toggle="modal" data-target="#shopping-list" type="button" style="position:relative">
                         <i class="fa fa-shopping-cart"></i>
-                        <span style="position:absolute;z-index:5;background-color:#ff0000;border-radius:5px;font-weight:bold;padding:0 5px;top:-10px;right:-8px;">0</span>
+                        <span class="products-in-cart"><?php echo get_cookie("cart") ? count(json_decode(get_cookie("cart"),TRUE)) : 0; ?></span>
                     </a>
                 </span>
                 <div class="search-xs">
