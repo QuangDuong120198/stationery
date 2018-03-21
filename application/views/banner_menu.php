@@ -10,7 +10,10 @@
                     <div style="font-size:16px;"><i class="fa fa-phone"></i>&nbsp;<?php echo $constants['phone']? $constants['phone'] : ''; ?></div>
                     <div><i class="fa fa-envelope"></i>&nbsp;<?php echo $constants['mail']? $constants['mail'] : ''; ?></div>
                 </span>
-                <h2 class="title"><a href="<?php echo base_url().'home'; ?>">Văn phòng phẩm Xuân Thủy</a></h2>
+                <h2 class="title">
+                    <a href="<?php echo base_url().'home'; ?>">Văn phòng phẩm Xuân Thủy</a>
+                    <p><?php echo $constants['address']? $constants['address']: '';?></p>
+                </h2>
                 <div class="stuffs">
                     <div class="search">
                         <form method="get" action="">

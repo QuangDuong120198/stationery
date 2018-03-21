@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
-<div class="row all-items">
+<div class="row slide">
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 col-xxs-12" style="padding-bottom:15px;">
         <div class="category hidden-sm hidden-xs">
             <div>

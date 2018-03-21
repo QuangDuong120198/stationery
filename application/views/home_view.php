@@ -37,7 +37,6 @@
 </div>
 </body>
 <script>
-$(document).ready(function(){
     if($(window).width()>=768){
         $(".catgory-item").show();
     }else{
@@ -51,17 +50,19 @@ $(document).ready(function(){
             $(".category-item").hide();
         }
     });
-    $(window).click(function(e){
-        if($(e.target).is("#btn-search") || $(e.target).closest("#btn-search").length){
-            $(".search-xs").toggle();
+    window.onclick = function(e){
+        if(e.target === document.getElementById("btn-search") || e.target.parentNode === document.getElementById("btn-search") || e.target.parentNode.parentNode === document.getElementById("btn-search")){
+            if(document.getElementsByClassName("search-xs")[0].style.display !== "none"){
+                document.getElementsByClassName("search-xs")[0].style.display = "none";
+            }else{
+                document.getElementsByClassName("search-xs")[0].style.display = "block";
+            }
+        }else if(e.target !== document.getElementsByClassName("search-xs")[0] && e.target.parentNode !== document.getElementsByClassName("search-xs")[0] && e.target.parentNode.parentNode !== document.getElementsByClassName("search-xs")[0] && e.target.parentNode.parentNode.parentNode !== document.getElementsByClassName("search-xs")[0]){
+            document.getElementsByClassName("search-xs")[0].style.display = "none";
+        }else if(e.target === document.getElementsByClassName("back")[0] || e.target.parentNode === document.getElementsByClassName("back")[0] ||e.target.parentNode.parentNode === document.getElementsByClassName("back")[0]){
+            document.getElementsByClassName("back")[0].style.display = "none";
         }
-        else if(!$(e.target).closest(".search-xs").length){
-            $(".search-xs").hide();
-        }
-        else if($(e.target).closest(".back").length){
-            $(".search-xs").hide();
-        }
-    });
+    };
     $("#category-toggle").click(function(){
         if($(window).width()<992){
             $(".category-item").toggle();
@@ -69,6 +70,5 @@ $(document).ready(function(){
             $(".category-item").show();
         }
     });
-});
 </script>
 </html>
