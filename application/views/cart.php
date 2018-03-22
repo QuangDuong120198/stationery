@@ -7,13 +7,8 @@
                 <h4 style="margin:0;"><strong><i class="fa fa-shopping-cart"></i>&nbsp;Danh sách đặt hàng</strong></h4>
             </div>
             <div class="modal-body">
+                <div class="total"></div>
                 <div class="container-fluid inner-cart">
-<?php if(get_cookie('cart')): ?>
-<?php foreach(json_decode(get_cookie('cart'),TRUE) as $row): ?>
-                    
-<?php endforeach; ?>
-<?php else: ?>
-<?php endif; ?>
                 </div>
             </div>
         </div>

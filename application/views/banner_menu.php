@@ -44,8 +44,8 @@
                     <img src="<?php echo ($constants['logo'] ? $constants['logo'] : ''); ?>" alt="logo" />
                     <span style="position:absolute;z-index:2;top:15px;font-family:'Palatino Linotype','Linotype', 'Book-Antiqua',serif;font-weight:bold;color:#0000cc;">
                         <a href="<?php echo base_url().'home'; ?>">
-                            <span style="font-size:16px;">Văn phòng phẩm</span><br />
-                            <span style="font-size:24px;">Xuân Thủy</span>
+                            <span style="font-size:14px;">Văn phòng phẩm</span><br />
+                            <span style="font-size:22px;">Xuân Thủy</span>
                         </a>
                     </span>
                 </div>
@@ -56,7 +56,7 @@
                         <span class="products-in-cart"><?php echo get_cookie("cart") ? count(json_decode(get_cookie("cart"),TRUE)) : 0; ?></span>
                     </a>
                 </span>
-                <div class="search-xs">
+                <div class="search-xs" style="display: none;">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-xxs-12">

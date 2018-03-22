@@ -24,7 +24,7 @@
 <?php foreach($display_page as $row):?>
                 <li><a href="javascript:void(0)" data-page="<?php echo $row; ?>" <?php echo $row==$cur_page ? 'style="background-color:#0366d6;color:#fff;"' : ''; ?>><?php echo $row; ?></a></li>
 <?php endforeach; ?>
-                <li><a href="javascript:void(0)" data-page="<?php echo $cur_page>=$pages? $pages : $cur_page + 1; ?>" title="Trang sau"><i class="fa fa-chevron-right"></i></a></li>
+                <li><a href="javascript:void(0)" data-page="<?php echo $cur_page>=$pages ? $pages : $cur_page + 1; ?>" title="Trang sau"><i class="fa fa-chevron-right"></i></a></li>
             </ul>
         </div>
     </div>
@@ -51,11 +51,11 @@
                                         <h4><strong><?php echo $row['name']; ?></strong></h4>
 <?php if($row['discount']>0): ?>
                                         <p>
-                                            <div><i class="fa fa-tag"></i>&nbsp;&nbsp;<?php echo number_format($row['price']*(100-$row['discount'])/100); ?>&nbsp;Đ</div>
-                                            <small><del><?php echo number_format($row['price']); ?>&nbsp;Đ</del></small>
+                                            <div class="product-price"><i class="fa fa-tag"></i>&nbsp;&nbsp;<?php echo number_format($row['price']*(100-$row['discount'])/100); ?>&nbsp;Đ</div>
+                                            <div><del><?php echo number_format($row['price']); ?>&nbsp;Đ</del></div>
                                         </p>
 <?php else:?>
-                                        <p><i class="fa fa-tag"></i>&nbsp;&nbsp;<?php echo number_format($row['price']); ?>&nbsp;Đ</p>
+                                        <p class="product-price"><i class="fa fa-tag"></i>&nbsp;&nbsp;<?php echo number_format($row['price']); ?>&nbsp;Đ</p>
 <?php endif; ?>
 <?php if(!$row['status']): ?>
                                         <button class="btn btn-danger">Đã hết hàng</button>
@@ -82,7 +82,21 @@
     </div>
 </div>
 <script>
-$(document).ready(function(){
+$(function(){
+    function total(){
+        var _cookie_ = Cookies.getJSON("cart");
+        var _cookie_len = _cookie_.length;
+        var total = 0;
+        for(var i=0 ; i<_cookie_len ; i++){
+            total += parseInt(_cookie_[i].amount) * _cookie_[i].price;
+        }
+        if(total > 0){
+            document.getElementById("shopping-list").getElementsByClassName("total")[0].innerHTML = "Tổng:  "+total+ " Đ";
+        }
+        else{
+            document.getElementById("shopping-list").getElementsByClassName("total")[0].innerHTML = "";
+        }
+    }
     function displayCart(){
         if(Cookies.get("cart") && Cookies.getJSON("cart").length>0){
             var _cookie_ = Cookies.getJSON("cart");
@@ -90,7 +104,7 @@ $(document).ready(function(){
             $(".inner-cart").html("");
             for(var i=0 ; i<_cookie_len ; i++)
             {
-                var str = "<div class=\"row cart-item\" data-product-id=\""+_cookie_[i].id+"\">";
+                var str = "<div class=\"row cart-item\" data-product-id=\""+_cookie_[i].id+"\" data-product-price=\""+_cookie_[i].price+"\" data-product-discount=\""+_cookie_[i].discount+"\">";
                 str += "<div class=\"col-lg-8 col-md-8 col-sm-7 col-xs-6 col-xxs-12 text-center\">";
                 str += "<img src=\""+_cookie_[i].image+"\" alt=\""+_cookie_[i].name+"\">";
                 str += "</div>";
@@ -108,7 +122,11 @@ $(document).ready(function(){
                 $(".inner-cart").append(str);
             }
             $(".amount").change(function(){
-                var amount = $(this).val();
+                if($(this).val()<=0 || $(this).val()==="")
+                {
+                    $(this).val(1);
+                }
+                var amount = parseInt($(this).val())>0 ? parseInt($(this).val()) : 1;
                 var item = $(this).closest(".cart-item");
                 var _cookie_ = Cookies.getJSON("cart");
                 var _cookie_len = _cookie_.length;
@@ -117,7 +135,7 @@ $(document).ready(function(){
                     if(_cookie_[i].id === item.attr("data-product-id"))
                     {
                         _cookie_[i].amount = amount;
-                        var price = parseInt(item.find(".price").html());
+                        var price = parseInt(item.attr("data-product-price"))*(100 - parseInt(item.attr("data-product-discount")))/100;
                         item.find(".multiple").html(price * amount);
                     }
                 }
@@ -125,6 +143,7 @@ $(document).ready(function(){
                     expires: 30,
                     path: "/"
                 });
+                total();
             });
             $(".remove-from-cart").click(function(){
                 var cur_item = $(this).closest(".cart-item");
@@ -141,15 +160,31 @@ $(document).ready(function(){
                             expires: 30,
                             path: "/"
                         });
+                        break;
                     }
                 }
                 $(".products-in-cart").html(Cookies.getJSON("cart").length);
+                total();
+                if(Cookies.getJSON("cart").length===0){
+                    var message = "";
+                    message += "<h4 style=\"font-weight:bold;text-align:center;margin-top:30px;\">";
+                    message += "Giỏ hàng của bạn hiện đang trống.";
+                    message += "<div style=\"margin-top:15px;margin-bottom:30px;\"><button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\"><i class=\"fa fa-shopping-cart\"></i>&nbsp;&nbsp;Tiếp tục mua hàng</button></div>";
+                    message += "</h4>";
+                    $(".inner-cart").html(message);
+                }
             });
         }else{
-            $(".inner-cart").html("Giỏ hàng của bạn hiện đang trống.");
+            var message = "";
+            message += "<h4 style=\"font-weight:bold;text-align:center;margin-top:30px;\">";
+            message += "Giỏ hàng của bạn hiện đang trống.";
+            message += "<div style=\"margin-top:15px;margin-bottom:30px;\"><button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\"><i class=\"fa fa-shopping-cart\"></i>&nbsp;&nbsp;Tiếp tục mua hàng</button></div>";
+            message += "</h4>";
+            $(".inner-cart").html(message);
         }
     };
     displayCart();
+    total();
     $("#view-product").on("shown.bs.modal",function(){
         $(window).keydown(function(e){
             if(e.keyCode===37){
@@ -225,6 +260,7 @@ $(document).ready(function(){
             $(".products-in-cart").html(0);
         }
         displayCart();
+        total();
     });
     /* end add to cart */
     $("[data-target='#view-product']").click(function(){
