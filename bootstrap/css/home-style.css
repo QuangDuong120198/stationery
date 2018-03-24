@@ -474,6 +474,82 @@
 .panel .panel-body {
   padding: 8px;
 }
+.panel .panel-body .myClass {
+  position: absolute;
+  bottom: -25px;
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-align: center;
+}
+.panel .panel-body .myClass li {
+  display: inline-block;
+}
+.panel .panel-body .myClass li button {
+  background-color: #ccc;
+  border: 0;
+  margin: 0 5px;
+  padding: 0 5px;
+  color: transparent;
+  width: 10px;
+  height: 10px;
+  outline: 0;
+  border-radius: 50%;
+}
+.panel .panel-body .myClass li button:focus {
+  outline: 0;
+}
+.panel .panel-body .boxes {
+  margin-left: 40px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.panel .panel-body input[type="checkbox"] {
+  display: none;
+}
+.panel .panel-body input[type="checkbox"] + label {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 20px;
+  font: 14px;
+  color: #000;
+  cursor: pointer;
+}
+.panel .panel-body input[type="checkbox"] + label:last-child {
+  margin-bottom: 0;
+}
+.panel .panel-body input[type="checkbox"] + label:before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #00c;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0.6;
+  -webkit-transition: all 0.12s, border-color 0.08s;
+  transition: all 0.12s, border-color 0.08s;
+}
+.panel .panel-body input[type="checkbox"]:checked + label:before {
+  width: 10px;
+  top: -5px;
+  left: 5px;
+  border-radius: 0;
+  opacity: 1;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.panel .panel-body .list .outer-item {
+  padding: 0 10px;
+}
 .panel .panel-body .list .list-item {
   margin: 15px 0;
   padding: 5px;
@@ -495,7 +571,7 @@
   background-size: contain;
   position: relative;
 }
-.panel .panel-body .list .list-item .img-thumbnail span {
+.panel .panel-body .list .list-item .img-thumbnail .discount {
   position: absolute;
   top: -15px;
   left: -15px;
@@ -566,6 +642,14 @@
   background-color: #333!important;
   color: #f5f5f0!important;
 }
+.modal-dark .modal-header .modal-title {
+  margin: 0;
+  font-weight: bold;
+  color: #f5f5f0;
+}
+.modal-dark .modal-header .close {
+  color: #f5f5f0;
+}
 .modal-dark .carousel-control.custom {
   width: auto;
   background: none;
@@ -582,10 +666,16 @@
 }
 .modal-dark .item .product-price {
   font-size: 16px;
+  font-weight: bold;
 }
 .modal-dark .item .product-type {
   margin-top: 15px;
   margin-bottom: 15px;
+}
+.modal-dark .item .product-type a {
+  color: #fff;
+  font-weight: bold;
+  padding: 5px 0;
 }
 .modal-dark .item .add-success {
   display: none;

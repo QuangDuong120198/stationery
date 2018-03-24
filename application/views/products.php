@@ -1,5 +1,13 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <div class="container-fluid">
+    <div class="row">
+        <div class="col-xxs-12">
+            <div class="boxes">
+                <input type="checkbox" <?php echo get_cookie('sort') ? 'checked="checked"' : ''; ?> id="sort" />
+                <label for="sort">Sắp xếp theo giá tăng dần</label>
+            </div>
+        </div>
+    </div>
     <div class="row list">
 <?php $j=0; foreach($products as $row): ?>
         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 col-xxs-12">
@@ -19,8 +27,8 @@
     </div>
     <div class="row">
         <div class="col-xxs-12" style="text-align:center;">
-            <ul class="pagination">
-                <li><a href="javascript:void(0)" data-page="<?php echo $cur_page<=1? 1 : $cur_page - 1; ?>" title="Trang trước"><i class="fa fa-chevron-left"></i></a></li>
+            <ul class="pagination" data-cur-page="<?php echo $cur_page; ?>">
+                <li><a href="javascript:void(0)" data-page="<?php echo $cur_page<=1 ? 1 : $cur_page - 1; ?>" title="Trang trước"><i class="fa fa-chevron-left"></i></a></li>
 <?php foreach($display_page as $row):?>
                 <li><a href="javascript:void(0)" data-page="<?php echo $row; ?>" <?php echo $row==$cur_page ? 'style="background-color:#0366d6;color:#fff;"' : ''; ?>><?php echo $row; ?></a></li>
 <?php endforeach; ?>
@@ -51,31 +59,31 @@
                                         <h4><strong><?php echo $row['name']; ?></strong></h4>
 <?php if($row['discount']>0): ?>
                                         <p>
-                                            <div class="product-price"><i class="fa fa-tag"></i>&nbsp;&nbsp;<?php echo number_format($row['price']*(100-$row['discount'])/100); ?>&nbsp;Đ</div>
+                                            <div class="product-price"><i class="fa fa-usd"></i>&nbsp;&nbsp;<?php echo number_format($row['price']*(100-$row['discount'])/100); ?>&nbsp;Đ</div>
                                             <div><del><?php echo number_format($row['price']); ?>&nbsp;Đ</del></div>
                                         </p>
 <?php else:?>
-                                        <p class="product-price"><i class="fa fa-tag"></i>&nbsp;&nbsp;<?php echo number_format($row['price']); ?>&nbsp;Đ</p>
+                                        <p class="product-price"><i class="fa fa-usd"></i>&nbsp;&nbsp;<?php echo number_format($row['price']); ?>&nbsp;Đ</p>
 <?php endif; ?>
+                                        <p class="product-style"><i class="fa fa-archive"></i>&nbsp;&nbsp;Cách đóng gói: <?php echo $row['style']; ?></p>
+                                        <p class="product-unit"><i class="fa fa-circle-o"></i>&nbsp;&nbsp;Đơn vị: <?php echo $row['unit']; ?></p>
 <?php if(!$row['status']): ?>
                                         <button class="btn btn-danger">Đã hết hàng</button>
 <?php else: ?>
                                         <button class="btn btn-primary btn-cart"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Đặt mua</button>
                                         <p class="add-success"><i class="fa fa-check"></i>&nbsp;&nbsp;Đã thêm vào giỏ hàng</p>
 <?php endif; ?>
-                                        <p class="product-type"><?php echo $row['type']; ?></p>
+                                        <div class="product-type">
+                                            <i class="fa fa-tags"></i>&nbsp;&nbsp;<a href="<?php echo base_url()."home/tag/".$row['type']['id']; ?>"><?php echo $row['type']['name']; ?></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 <?php $i++; endforeach; ?>
                     </div>
-                    <a class="left carousel-control custom" href="#inner-view-product" role="button" data-slide="prev">
-                        <span class="fa fa-chevron-left" aria-hidden="true"></span>
-                    </a>
-                    <a class="right carousel-control custom" href="#inner-view-product" role="button" data-slide="next">
-                        <span class="fa fa-chevron-right" aria-hidden="true"></span>
-                    </a>
+                    <a class="left carousel-control custom" href="#inner-view-product" role="button" data-slide="prev"><span class="fa fa-chevron-left" aria-hidden="true"></span></a>
+                    <a class="right carousel-control custom" href="#inner-view-product" role="button" data-slide="next"><span class="fa fa-chevron-right" aria-hidden="true"></span></a>
                 </div>
             </div>
         </div>
@@ -83,106 +91,38 @@
 </div>
 <script>
 $(function(){
-    function total(){
-        var _cookie_ = Cookies.getJSON("cart");
-        var _cookie_len = _cookie_.length;
-        var total = 0;
-        for(var i=0 ; i<_cookie_len ; i++){
-            total += parseInt(_cookie_[i].amount) * _cookie_[i].price;
-        }
-        if(total > 0){
-            document.getElementById("shopping-list").getElementsByClassName("total")[0].innerHTML = "Tổng:  "+total+ " Đ";
-        }
-        else{
-            document.getElementById("shopping-list").getElementsByClassName("total")[0].innerHTML = "";
-        }
-    }
-    function displayCart(){
-        if(Cookies.get("cart") && Cookies.getJSON("cart").length>0){
-            var _cookie_ = Cookies.getJSON("cart");
-            var _cookie_len = _cookie_.length;
-            $(".inner-cart").html("");
-            for(var i=0 ; i<_cookie_len ; i++)
-            {
-                var str = "<div class=\"row cart-item\" data-product-id=\""+_cookie_[i].id+"\" data-product-price=\""+_cookie_[i].price+"\" data-product-discount=\""+_cookie_[i].discount+"\">";
-                str += "<div class=\"col-lg-8 col-md-8 col-sm-7 col-xs-6 col-xxs-12 text-center\">";
-                str += "<img src=\""+_cookie_[i].image+"\" alt=\""+_cookie_[i].name+"\">";
-                str += "</div>";
-                str += "<div class=\"col-lg-4 col-md-4 col-sm-5 col-xs-6 col-xxs-12 center-xxs\">";
-                str += "<h4><strong>"+_cookie_[i].name+"</strong></h4>";
-                str += "<div><i class=\"fa fa-tag\"></i>&nbsp;&nbsp;<span class=\"price\">"+_cookie_[i].price*(100-_cookie_[i].discount)/100+"</span> Đ</div>";
-                if(_cookie_[i].discount>0){
-                    str += "<div><small><del>"+_cookie_[i].price+" Đ</del></small></div>";
-                }
-                str += "<input class=\"amount\" type=\"number\" min=\"1\" value=\""+_cookie_[i].amount+"\" />";
-                str += "<p><strong>Thành tiền: <span class=\"multiple\">"+_cookie_[i].amount * _cookie_[i].price *(100-_cookie_[i].discount)/100+"</span> Đ</strong></p>";
-                str += "<p><button class=\"btn btn-danger remove-from-cart\"><i class=\"fa fa-times\"></i>&nbsp;&nbsp;Xóa khỏi giỏ hàng</button></p>";
-                str += "</div>";
-                str += "</div>";
-                $(".inner-cart").append(str);
-            }
-            $(".amount").change(function(){
-                if($(this).val()<=0 || $(this).val()==="")
-                {
-                    $(this).val(1);
-                }
-                var amount = parseInt($(this).val())>0 ? parseInt($(this).val()) : 1;
-                var item = $(this).closest(".cart-item");
-                var _cookie_ = Cookies.getJSON("cart");
-                var _cookie_len = _cookie_.length;
-                for(var i=0 ; i<_cookie_len ; i++)
-                {
-                    if(_cookie_[i].id === item.attr("data-product-id"))
-                    {
-                        _cookie_[i].amount = amount;
-                        var price = parseInt(item.attr("data-product-price"))*(100 - parseInt(item.attr("data-product-discount")))/100;
-                        item.find(".multiple").html(price * amount);
-                    }
-                }
-                Cookies.set("cart",JSON.stringify(_cookie_),{
-                    expires: 30,
-                    path: "/"
-                });
-                total();
-            });
-            $(".remove-from-cart").click(function(){
-                var cur_item = $(this).closest(".cart-item");
-                var id = cur_item.attr("data-product-id");
-                var _cookie_ = Cookies.getJSON("cart");
-                var _cookie_len = _cookie_.length;
-                for(var i=0 ; i<_cookie_len ; i++)
-                {
-                    if(_cookie_[i].id === id)
-                    {
-                        _cookie_.splice(i,1);
-                        cur_item.remove();
-                        Cookies.set("cart",JSON.stringify(_cookie_),{
-                            expires: 30,
-                            path: "/"
-                        });
-                        break;
-                    }
-                }
-                $(".products-in-cart").html(Cookies.getJSON("cart").length);
-                total();
-                if(Cookies.getJSON("cart").length===0){
-                    var message = "";
-                    message += "<h4 style=\"font-weight:bold;text-align:center;margin-top:30px;\">";
-                    message += "Giỏ hàng của bạn hiện đang trống.";
-                    message += "<div style=\"margin-top:15px;margin-bottom:30px;\"><button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\"><i class=\"fa fa-shopping-cart\"></i>&nbsp;&nbsp;Tiếp tục mua hàng</button></div>";
-                    message += "</h4>";
-                    $(".inner-cart").html(message);
-                }
-            });
+    $("#sort").change(function(){
+        if($("#sort").is(":checked")){
+            Cookies.set("sort",true,{expires: 30,path: "/"});
+            var cur_page = parseInt($(".pagination").eq(0).attr("data-cur-page"));
+            loadPage(cur_page);
         }else{
-            var message = "";
-            message += "<h4 style=\"font-weight:bold;text-align:center;margin-top:30px;\">";
-            message += "Giỏ hàng của bạn hiện đang trống.";
-            message += "<div style=\"margin-top:15px;margin-bottom:30px;\"><button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\"><i class=\"fa fa-shopping-cart\"></i>&nbsp;&nbsp;Tiếp tục mua hàng</button></div>";
-            message += "</h4>";
-            $(".inner-cart").html(message);
+            Cookies.remove("sort", {path: "/"});
+            var cur_page = parseInt($(".pagination").eq(0).attr("data-cur-page"));
+            loadPage(cur_page);
         }
-    };
+    });
+    function loadPage(page = 1){
+        $.ajax({
+            url: "<?php echo base_url().'home/get_products/'?>" + page,
+            type: "GET",
+            dateType: "html",
+            data:{
+                to_page: page
+            },
+            timeout: 10000,
+            beforeSend: function(){
+                $('.all-products .discount, .all-products .product-name, .all-products .price').addClass('placeholder-loading').css('color','transparent');
+                $('html, body').animate({ scrollTop: $(".all-products").offset().top }, 500);
+            },
+            success: function(e){
+                $("#loadProduct").html(JSON.parse(e).products_view);
+            },
+            error: function(){
+                window.location.href = "<?php echo base_url().'home/index/'; ?>" + page;
+            }
+        });
+    }
     displayCart();
     total();
     $("#view-product").on("shown.bs.modal",function(){
@@ -197,7 +137,7 @@ $(function(){
         });
     });
     /* begin add to cart */
-    $(".btn-cart").click(function(e){
+    $(".btn-cart").unbind("click").bind("click",function(e){
         var item = $(e.target).closest(".item");
         var product = {
             id: item.attr("data-product-id"),
@@ -206,48 +146,34 @@ $(function(){
             discount: item.attr("data-product-discount"),
             image: item.find("img").eq(0).attr("src")
         };
-        if(!Cookies.get("cart"))
-        {
+        if(!Cookies.get("cart")){
             var cart = [];
             product.amount = 1;
             cart.push(product);
-            Cookies.set("cart",JSON.stringify(cart),{
-                expires: 30,
-                path: "/"
-            });
-        }
-        else
-        {
+            Cookies.set("cart",JSON.stringify(cart),{expires: 30,path: "/"});
+        }else{
             var _cookie_ = Cookies.getJSON("cart");
             var _cookie_length = _cookie_.length;
             if((function(){
-                for(var i=0 ; i<_cookie_length ; i++)
-                {
-                    if(_cookie_[i].id === product.id)
-                    {
+                for(var i=0 ; i<_cookie_length ; i++){
+                    if(_cookie_[i].id === product.id){
                         return true;
                     }
                 }
                 return false;
             })())
             {
-                for(var i=0 ; i<_cookie_length ; i++)
-                {
-                    if(_cookie_[i].id === product.id)
-                    {
+                for(var i=0 ; i<_cookie_length ; i++){
+                    if(_cookie_[i].id === product.id){
                         _cookie_[i].amount++;
                     }
                 }
             }
-            else
-            {
+            else{
                 product.amount = 1;
                 _cookie_.push(product);
             }
-            Cookies.set("cart",JSON.stringify(_cookie_),{
-                expires: 30,
-                path: "/"
-            });
+            Cookies.set("cart",JSON.stringify(_cookie_),{expires: 30,path: "/"});
         }
         item.find(".add-success").eq(0).show();
         setTimeout(function(){
@@ -270,28 +196,8 @@ $(function(){
     });
     $("[data-page]").click(function(){
     /* pagination with AJAX */
-        var page = $(this).attr('data-page');
-        $.ajax({
-            url: "<?php echo base_url().'home/get_products/'?>" + page,
-            type: "GET",
-            dateType: "html",
-            data:{
-                to_page: page
-            },
-            beforeSend: function(){
-                $('.img-thumbnail, .discount, .product-name, .price').addClass('placeholder-loading');
-                $('.img-thumbnail, .discount, .product-name, .price').css('color','transparent');
-                $('html, body').animate({
-                    scrollTop: $(".all-products").offset().top
-                }, 500);
-            },
-            success: function(e){
-                $(".panel-body").html(JSON.parse(e).products_view);
-            },
-            error: function(){
-                window.location.href = "<?php echo base_url().'home/index/'; ?>"+page;
-            }
-        });
+        var page = parseInt($(this).attr('data-page'));
+        loadPage(page);
     });
 });
 </script>

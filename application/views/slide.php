@@ -6,8 +6,8 @@
                 <a href="javascript:void(0)" class="category-header mybtn"><span>DANH MỤC&nbsp;<i class="fa fa-chevron-down" style="float:right;"></i></span></a>
             </div>
             <div class="inner-category">
-<?php foreach($category as $row){ ?>
-                <div class="category-item-lg"><a href="javascript:void(0)"><?php echo $row; ?></a></div>
+<?php foreach($category as $key=>$value){ ?>
+                <div class="category-item-lg"><a href="<?php echo base_url()."home/category/".$key; ?>"><?php echo $value; ?></a></div>
 <?php }?>
             </div>
         </div>
@@ -16,8 +16,8 @@
                 <a href="javascript:void(0)" class="category-header mybtn"><span>DANH MỤC&nbsp;<i class="fa fa-chevron-down" style="float:right;"></i></span></a>
             </div>
             <div class="inner-category">
-<?php foreach($category as $row){ ?>
-                <div class="category-item"><a href="javascript:void(0)"><?php echo $row; ?></a></div>
+<?php foreach($category as $key=>$value){ ?>
+                <div class="category-item"><a href="<?php echo base_url()."home/category/".$key; ?>"><?php echo $value; ?></a></div>
 <?php } ?>
             </div>
         </div>
