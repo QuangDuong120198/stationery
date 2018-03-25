@@ -19,7 +19,7 @@
         <div class="col-xxs-12">
             <div class="all-products">
                 <div class="panel mypanel">
-                    <div class="panel-header"><i class="fa fa-gift"></i>&nbsp;Sản phẩm</div>
+                    <div class="panel-header"><i class="fa fa-gift"></i>&nbsp;<?php echo $product_type; ?></div>
                     <div class="panel-body" id="loadProduct">
 <?php echo $display_products; ?>
                     </div>

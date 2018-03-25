@@ -97,6 +97,7 @@ class Products extends MY_Controller
     public function index($page = 1)
     {
         $data = $this->display($page);
+        $data['product_type'] = "Sản phẩm";
         $data['category_id'] = "";
         $data['page_name'] = "Products";
         $data['banner_menu'] = $this->load->view('banner_menu.php',$data,TRUE);
@@ -126,6 +127,7 @@ class Products extends MY_Controller
     public function sale($page = 1)
     {
         $data = $this->display($page, TRUE);
+        $data['product_type'] = "Sản phẩm khuyến mại";
         $data['category_id'] = "";
         $data['page_name'] = "Sale";
         $data['banner_menu'] = $this->load->view('banner_menu.php',$data,TRUE);
@@ -155,6 +157,7 @@ class Products extends MY_Controller
     public function category($category_id = '', $page = 1)
     {
         $data = $this->display($page);
+        $data['product_type'] = $data['category'][$category_id] ? $data['category'][$category_id] : "";
         $data['page_name'] = "Products";
         $data['banner_menu'] = $this->load->view('banner_menu.php',$data,TRUE);
         $data['filtered_all_products'] = array();
