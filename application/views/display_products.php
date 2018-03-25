@@ -27,7 +27,7 @@
     </div>
     <div class="row">
         <div class="col-xxs-12" style="text-align:center;">
-            <ul class="pagination" data-cur-page="<?php echo $cur_page; ?>">
+            <ul class="pagination" data-cur-page="<?php echo $cur_page; ?>" data-category-id="<?php echo ($category_id) ? $category_id : ''; ?>">
                 <li><a href="javascript:void(0)" data-page="<?php echo $cur_page<=1 ? 1 : $cur_page - 1; ?>" title="Trang trước"><i class="fa fa-chevron-left"></i></a></li>
 <?php foreach($display_page as $row):?>
                 <li><a href="javascript:void(0)" data-page="<?php echo $row; ?>" <?php echo $row==$cur_page ? 'style="background-color:#0366d6;color:#fff;"' : ''; ?>><?php echo $row; ?></a></li>
@@ -74,7 +74,7 @@
                                         <p class="add-success"><i class="fa fa-check"></i>&nbsp;&nbsp;Đã thêm vào giỏ hàng</p>
 <?php endif; ?>
                                         <div class="product-type">
-                                            <i class="fa fa-tags"></i>&nbsp;&nbsp;<a href="<?php echo base_url()."home/tag/".$row['type']['id']; ?>"><?php echo $row['type']['name']; ?></a>
+                                            <i class="fa fa-tags"></i>&nbsp;&nbsp;<a href="<?php echo base_url()."products/category/".$row['type']['id']; ?>"><?php echo $row['type']['name']; ?></a>
                                         </div>
                                     </div>
                                 </div>
@@ -94,35 +94,12 @@ $(function(){
     $("#sort").change(function(){
         if($("#sort").is(":checked")){
             Cookies.set("sort",true,{expires: 30,path: "/"});
-            var cur_page = parseInt($(".pagination").eq(0).attr("data-cur-page"));
-            loadPage(cur_page);
         }else{
             Cookies.remove("sort", {path: "/"});
-            var cur_page = parseInt($(".pagination").eq(0).attr("data-cur-page"));
-            loadPage(cur_page);
         }
+        var cur_page = parseInt($(".pagination").eq(0).attr("data-cur-page"));
+        loadPage(cur_page,"<?php echo $ajax_url; ?>","<?php echo $ajax_redirect; ?>");
     });
-    function loadPage(page = 1){
-        $.ajax({
-            url: "<?php echo base_url().'home/get_products/'?>" + page,
-            type: "GET",
-            dateType: "html",
-            data:{
-                to_page: page
-            },
-            timeout: 10000,
-            beforeSend: function(){
-                $('.all-products .discount, .all-products .product-name, .all-products .price').addClass('placeholder-loading').css('color','transparent');
-                $('html, body').animate({ scrollTop: $(".all-products").offset().top }, 500);
-            },
-            success: function(e){
-                $("#loadProduct").html(JSON.parse(e).products_view);
-            },
-            error: function(){
-                window.location.href = "<?php echo base_url().'home/index/'; ?>" + page;
-            }
-        });
-    }
     displayCart();
     total();
     $("#view-product").on("shown.bs.modal",function(){
@@ -197,7 +174,7 @@ $(function(){
     $("[data-page]").click(function(){
     /* pagination with AJAX */
         var page = parseInt($(this).attr('data-page'));
-        loadPage(page);
+        loadPage(page,"<?php echo $ajax_url; ?>","<?php echo $ajax_redirect; ?>");
     });
 });
 </script>

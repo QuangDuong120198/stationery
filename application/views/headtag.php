@@ -14,7 +14,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()."bootstrap/css/bootstrap-theme.css"; ?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()."bootstrap/css/home-style.css"; ?>" />
 <script src="<?php echo base_url()."bootstrap/js/JSONpolyfill.js"; ?>"></script>
-<script src="<?php echo base_url()."bootstrap/js/arraypolyfill.js"; ?>"></script>
+<script src="<?php echo base_url()."bootstrap/js/array_number_polyfill.js"; ?>"></script>
 <script src="<?php echo base_url()."bootstrap/js/slick/slick.min.js"; ?>"></script>
 <script src="<?php echo base_url()."bootstrap/js/cookie.js"; ?>"></script>
 <script src="<?php echo base_url()."bootstrap/js/bootstrap.js"; ?>"></script>

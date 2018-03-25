@@ -86,11 +86,11 @@
         </div>
         <div class="collapse navbar-collapse" id="menu">
             <ul class="nav navbar-nav">
-                <li><a href="<?php echo base_url().'home'; ?>" <?php echo $page=='Home' ? 'style="background-color:#333399;"' : ''; ?>>Sản phẩm</a></li>
-                <li><a href="<?php echo base_url().'introduce'; ?>" <?php echo $page=='Introduce' ? 'style="background-color:#333399;"' : ''; ?>>Giới thiệu</a></li>
-                <li><a href="<?php echo base_url().'price'; ?>" <?php echo $page=='Price' ? 'style="background-color:#333399;"' : ''; ?>>Bảng giá</a></li>
-                <li><a href="<?php echo base_url().'sale'; ?>" <?php echo $page=='Sale' ? 'style="background-color:#333399;"' : ''; ?>>Khuyến mại</a></li>
-                <li><a href="<?php echo base_url().'contact'; ?>" <?php echo $page=='Contact' ? 'style="background-color:#333399;"' : ''; ?>>Liên hệ</a></li>
+                <li><a href="<?php echo base_url().'products'; ?>" <?php echo $page_name=='Products' ? 'style="background-color:#333399;"' : ''; ?>>Sản phẩm</a></li>
+                <li><a href="<?php echo base_url().'introduce'; ?>" <?php echo $page_name=='Introduce' ? 'style="background-color:#333399;"' : ''; ?>>Giới thiệu</a></li>
+                <li><a href="<?php echo base_url().'price'; ?>" <?php echo $page_name=='Price' ? 'style="background-color:#333399;"' : ''; ?>>Bảng giá</a></li>
+                <li><a href="<?php echo base_url().'products/sale'; ?>" <?php echo $page_name=='Sale' ? 'style="background-color:#333399;"' : ''; ?>>Khuyến mại</a></li>
+                <li><a href="<?php echo base_url().'contact'; ?>" <?php echo $page_name=='Contact' ? 'style="background-color:#333399;"' : ''; ?>>Liên hệ</a></li>
             </ul>
         </div>
     </div>
