@@ -36,6 +36,21 @@
 </div>
 </body>
 <script>
+function validateCookie(){
+    var _cookie_ = Cookies.getJSON("cart");
+    if(!Array.isArray(_cookie_)){
+        Cookies.set("cart",JSON.stringify([]),{ expires:30, path:"/" });
+    }else{
+        if(_cookie_.length !== 0){
+            var _cookie_len = _cookie_.length;
+            for(var i=0 ; i<_cookie_len ; i++){
+                if(typeof _cookie_[i] !=="object" || !_cookie_[i].hasOwnProperty('amount') || !_cookie_[i].hasOwnProperty("price") || !_cookie_[i].hasOwnProperty("name") || !_cookie_[i].hasOwnProperty("discount") || !_cookie_[i].hasOwnProperty("image") || !_cookie_[i].hasOwnProperty("id")){
+                    Cookies.set("cart",JSON.stringify([]),{expires:30, path:"/"});
+                }
+            }
+        }
+    }
+}
 function loadPage(page = 1, url = '', redirect = '', category_id = ''){
     $.ajax({
         url: url,
@@ -77,6 +92,7 @@ function total(){
     }
 }
 function displayCart(){
+    validateCookie();
     if(Cookies.get("cart") && Cookies.getJSON("cart").length>0){
         var _cookie_ = Cookies.getJSON("cart");
         var _cookie_len = _cookie_.length;
@@ -100,6 +116,7 @@ function displayCart(){
             $(".inner-cart").append(str);
         }
         $(".amount").change(function(){
+            validateCookie();
             if($(this).val()<=0 || $(this).val()===""){
                 $(this).val(1);
             }
@@ -118,6 +135,7 @@ function displayCart(){
             total();
         });
         $(".remove-from-cart").click(function(){
+            validateCookie();
             var cur_item = $(this).closest(".cart-item");
             var id = cur_item.attr("data-product-id");
             var _cookie_ = Cookies.getJSON("cart");

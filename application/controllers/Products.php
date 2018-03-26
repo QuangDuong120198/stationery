@@ -25,7 +25,7 @@ class Products extends MY_Controller
                 return $item['discount'] > 0 && !$item['status'];
             });
         }
-        $data['category_id'] = "";
+        $data['category_id'] = ""; // don't delete this!!
         $data['all_products'] = !$sale ? array_merge($data['discount'], $data['nodiscount'], $data['out']) : array_merge($data['discount'], $data['out']);
         if(get_cookie('sort',TRUE)){
             uasort($data['raw_all_products'], function($a, $b){
@@ -113,8 +113,8 @@ class Products extends MY_Controller
     {
         $data = $this->display($page, TRUE);
         $data['product_type'] = "Sản phẩm khuyến mại";
-        $data['category_id'] = "";
-        $data['best_seller'] = "";
+        $data['category_id'] = ""; // don't delete this!!
+        $data['best_seller'] = ""; // don't delete this!!
         $data['page_name'] = "Sale";
         $data['banner_menu'] = $this->load->view('banner_menu.php',$data,TRUE);
         $data['pages'] = (int)ceil(count($data['all_products'])/12);
@@ -135,7 +135,7 @@ class Products extends MY_Controller
         }
         $data['ajax_url'] = base_url()."products/get_sale_products_ajax/";
         $data['ajax_redirect'] = base_url()."products/sale/";
-        $data['best_seller'] = "";
+        $data['best_seller'] = ""; // don't delete this!!
         $data['products'] = array_slice($data['all_products'], 12*($data['cur_page']-1), 12);
         $data['display_products'] = $this->load->view('display_products.php',$data,TRUE);
         $this->load->view('home_view.php',$data);
@@ -209,8 +209,8 @@ class Products extends MY_Controller
                 array_push($data['display_page'],$i);
             }
         }
-        $data['best_seller'] = "";
-        $data['category_id'] = "";
+        $data['best_seller'] = ""; // don't delete this!!
+        $data['category_id'] = ""; // don't delete this!!
         $data['products'] = array_slice($data['results'],12*($data['cur_page']-1),12);
         $data['ajax_url'] = base_url()."products/";
         $data['ajax_redirect'] = base_url()."products/";
