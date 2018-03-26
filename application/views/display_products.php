@@ -28,11 +28,19 @@
     <div class="row">
         <div class="col-xxs-12" style="text-align:center;">
             <ul class="pagination" data-cur-page="<?php echo $cur_page; ?>" data-category-id="<?php echo ($category_id) ? $category_id : ''; ?>">
+<?php if($page_name !== "search"):?>
                 <li><a href="javascript:void(0)" data-page="<?php echo $cur_page<=1 ? 1 : $cur_page - 1; ?>" title="Trang trước"><i class="fa fa-chevron-left"></i></a></li>
 <?php foreach($display_page as $row):?>
                 <li><a href="javascript:void(0)" data-page="<?php echo $row; ?>" <?php echo $row==$cur_page ? 'style="background-color:#0366d6;color:#fff;"' : ''; ?>><?php echo $row; ?></a></li>
 <?php endforeach; ?>
                 <li><a href="javascript:void(0)" data-page="<?php echo $cur_page>=$pages ? $pages : $cur_page + 1; ?>" title="Trang sau"><i class="fa fa-chevron-right"></i></a></li>
+<?php else: ?>
+                <li><a href="<?php echo base_url()."products/search/?keyword=".$keyword."&page=".($cur_page<=1 ? 1 : $cur_page-1); ?>" title="Trang trước"><i class="fa fa-chevron-left"></i></a></li>
+<?php foreach($display_page as $row):?>
+                <li><a href="<?php echo base_url()."products/search/?keyword=".$keyword."&page=".$row; ?>" <?php echo $row==$cur_page ? 'style="background-color:#0366d6;color:#fff;"' : ''; ?>><?php echo $row; ?></a></li>
+<?php endforeach; ?>
+                <li><a href="<?php echo base_url()."products/search/?keyword=".$keyword."&page=".($cur_page>=$pages ? $pages : $cur_page + 1); ?>"  title="Trang sau"><i class="fa fa-chevron-right"></i></a></li>
+<?php endif; ?>
             </ul>
         </div>
     </div>
@@ -70,7 +78,7 @@
 <?php if(!$row['status']): ?>
                                         <button class="btn btn-danger">Đã hết hàng</button>
 <?php else: ?>
-                                        <button class="btn btn-primary btn-cart"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Đặt mua</button>
+                                        <button class="btn btn-primary btn-cart"><i class="fa fa-cart-plus"></i>&nbsp;&nbsp;Đặt mua</button>
                                         <p class="add-success"><i class="fa fa-check"></i>&nbsp;&nbsp;Đã thêm vào giỏ hàng</p>
 <?php endif; ?>
                                         <div class="product-type">
@@ -98,7 +106,11 @@ $(function(){
             Cookies.remove("sort", {path: "/"});
         }
         var cur_page = parseInt($(".pagination").eq(0).attr("data-cur-page"));
+<?php if($page_name!=="search"):?>
         loadPage(cur_page,"<?php echo $ajax_url; ?>","<?php echo $ajax_redirect; ?>");
+<?php else:?>
+        window.location.href = "<?php echo base_url()."products/search/?keyword=".$keyword."&page="; ?>" + cur_page;
+<?php endif; ?>
     });
     displayCart();
     total();
@@ -171,10 +183,12 @@ $(function(){
         var index = parseInt($(this).attr("data-slide-index"));
         $("#inner-view-product").carousel(index);
     });
+<?php if($page_name !== "search"): ?>
     $("[data-page]").click(function(){
     /* pagination with AJAX */
         var page = parseInt($(this).attr('data-page'));
         loadPage(page,"<?php echo $ajax_url; ?>","<?php echo $ajax_redirect; ?>");
     });
+<?php endif;?>
 });
 </script>

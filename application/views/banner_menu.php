@@ -16,7 +16,7 @@
                 </h2>
                 <div class="stuffs">
                     <div class="search">
-                        <form method="get" action="">
+                        <form method="get" action="<?php echo base_url()."products/search/"; ?>">
                             <div class="input-group">
                                 <input type="text" class="form-control" name="keyword" placeholder="Nhập từ tìm kiếm..." autocomplete="off" />
                                 <span class="input-group-btn">
@@ -63,7 +63,7 @@
                                 <div class="back">
                                     <button type="button" class="btn mybtn"><i class="fa fa-arrow-left"></i></button>
                                 </div>
-                                <form method="get" action="">
+                                <form method="get" action="<?php echo base_url()."products/search/"; ?>">
                                     <div class="input-group">
                                         <input class="form-control" type="text" name="keyword" placeholder="Nhập từ tìm kiếm..." />
                                         <span class="input-group-btn">
@@ -88,7 +88,6 @@
             <ul class="nav navbar-nav">
                 <li><a href="<?php echo base_url().'products'; ?>" <?php echo $page_name=='Products' ? 'style="background-color:#333399;"' : ''; ?>>Sản phẩm</a></li>
                 <li><a href="<?php echo base_url().'introduce'; ?>" <?php echo $page_name=='Introduce' ? 'style="background-color:#333399;"' : ''; ?>>Giới thiệu</a></li>
-                <li><a href="<?php echo base_url().'price'; ?>" <?php echo $page_name=='Price' ? 'style="background-color:#333399;"' : ''; ?>>Bảng giá</a></li>
                 <li><a href="<?php echo base_url().'products/sale'; ?>" <?php echo $page_name=='Sale' ? 'style="background-color:#333399;"' : ''; ?>>Khuyến mại</a></li>
                 <li><a href="<?php echo base_url().'contact'; ?>" <?php echo $page_name=='Contact' ? 'style="background-color:#333399;"' : ''; ?>>Liên hệ</a></li>
             </ul>

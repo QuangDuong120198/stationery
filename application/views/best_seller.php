@@ -32,7 +32,7 @@
                                 <?php if(!$row['status']): ?>
                                         <button class="btn btn-danger">Đã hết hàng</button>
                                 <?php else: ?>
-                                        <button class="btn btn-primary btn-cart"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Đặt mua</button>
+                                        <button class="btn btn-primary btn-cart"><i class="fa fa-cart-plus"></i>&nbsp;&nbsp;Đặt mua</button>
                                         <p class="add-success"><i class="fa fa-check"></i>&nbsp;&nbsp;Đã thêm vào giỏ hàng</p>
                                 <?php endif; ?>
                                         <div class="product-type">

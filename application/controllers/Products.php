@@ -25,21 +25,14 @@ class Products extends MY_Controller
                 return $item['discount'] > 0 && !$item['status'];
             });
         }
-
-        if(get_cookie('sort',TRUE)){
-            uasort($data['discount'], function($a, $b){
-                return $a['price'] - $b['price'];
-            });
-            if($data['nodiscount']){
-                uasort($data['nodiscount'], function($a, $b){
-                    return $a['price'] - $b['price'];
-                });
-            }
-            uasort($data['out'], function($a, $b){
-                return $a['price'] - $b['price'];
-            });
-        }
+        $data['category_id'] = "";
         $data['all_products'] = !$sale ? array_merge($data['discount'], $data['nodiscount'], $data['out']) : array_merge($data['discount'], $data['out']);
+        if(get_cookie('sort',TRUE)){
+            uasort($data['raw_all_products'], function($a, $b){
+                return $a['price'] - $b['price'];
+            });
+            $data['all_products'] = $data['raw_all_products'];
+        }
         return $data;
     }
     private function display($page = 1, $sale = FALSE){
@@ -47,7 +40,6 @@ class Products extends MY_Controller
         $data['constants'] = $db['constants'];
         $data['category'] = $db['category'];
         $data['slide'] = $this->load->view('slide.php',$data,TRUE);
-        $data['page'] = get_class($this);
         $data['cart'] = $this->load->view('cart.php',$data,TRUE);
         $data['headtag'] = $this->load->view('headtag.php',$data,TRUE);
         $data['footer'] = $this->load->view('footer.php',$data,TRUE);
@@ -78,20 +70,13 @@ class Products extends MY_Controller
                 return $item['discount'] > 0 && !$item['status'];
             });
         }
-        if(get_cookie('sort',TRUE)){
-            uasort($data['discount'],function($a, $b){
-                return $a['price'] - $b['price'];
-            });
-            if($data['nodiscount']){
-                uasort($data['nodiscount'],function($a, $b){
-                    return $a['price'] - $b['price'];
-                });
-            }
-            uasort($data['out'],function($a,$b){
-                return $a['price'] - $b['price'];
-            });
-        }
         $data['all_products'] = !$sale ? array_merge($data['discount'], $data['nodiscount'], $data['out']) : array_merge($data['discount'], $data['out']);
+        if(get_cookie('sort',TRUE)){
+            uasort($data['raw_all_products'],function($a, $b){
+                return $a['price'] - $b['price'];
+            });
+            $data['all_products'] = $data['raw_all_products'];
+        }  
         return $data;
     }
     public function index($page = 1)
@@ -129,6 +114,7 @@ class Products extends MY_Controller
         $data = $this->display($page, TRUE);
         $data['product_type'] = "Sản phẩm khuyến mại";
         $data['category_id'] = "";
+        $data['best_seller'] = "";
         $data['page_name'] = "Sale";
         $data['banner_menu'] = $this->load->view('banner_menu.php',$data,TRUE);
         $data['pages'] = (int)ceil(count($data['all_products'])/12);
@@ -149,7 +135,7 @@ class Products extends MY_Controller
         }
         $data['ajax_url'] = base_url()."products/get_sale_products_ajax/";
         $data['ajax_redirect'] = base_url()."products/sale/";
-        $data['best_seller'] = $this->load->view('best_seller.php',$data,TRUE);
+        $data['best_seller'] = "";
         $data['products'] = array_slice($data['all_products'], 12*($data['cur_page']-1), 12);
         $data['display_products'] = $this->load->view('display_products.php',$data,TRUE);
         $this->load->view('home_view.php',$data);
@@ -182,11 +168,52 @@ class Products extends MY_Controller
                 array_push($data['display_page'],$i);
             }
         }
-        $data['best_seller'] = $this->load->view('best_seller.php',$data,TRUE);
+        $data['best_seller'] = "";
         $data['products'] = array_slice($data['filtered_all_products'], 12*($data['cur_page']-1), 12);
         $data['ajax_url'] = base_url()."products/get_products_by_category_ajax/".$category_id."/";
         $data['ajax_redirect'] = base_url()."products/category/".$category_id."/";
         $data['category_id'] = $category_id;
+        $data['display_products'] = $this->load->view('display_products.php',$data,TRUE);
+        $this->load->view('home_view.php',$data);
+    }
+    public function search()
+    {
+        $data = $this->display();
+        $data['page_name'] = "search";
+        $data['product_type'] = "Kết quả tìm kiếm";
+        $data['banner_menu'] = $this->load->view('banner_menu.php',$data,TRUE);
+        $keyword = strtolower($this->input->get("keyword",TRUE) ? $this->input->get("keyword",TRUE) : "");
+        $data['keyword'] = $keyword;
+        $keyword = utf8_to_ascii($keyword);
+        $data['results'] = array();
+        foreach($data['all_products'] as $row)
+        {
+            if(strpos($row['search_name'],$keyword)!==FALSE)
+            {
+                array_push($data['results'],$row);
+            }
+        }
+        $data['pages'] = (int)ceil(count($data['results'])/12);
+        $data['cur_page'] = ((int)$this->input->get("page",TRUE) < 1 || !$this->input->get("page",TRUE)) ? 1 : (int)$this->input->get("page",TRUE);
+        $data['display_page'] = array();
+        if($data['pages']>5){
+            if($data['cur_page']<4){
+                $data['display_page'] = array(1,2,3,4,5);
+            }elseif($data['cur_page']<$data['pages']-2){
+                $data['display_page'] = array($data['cur_page']-2, $data['cur_page']-1, $data['cur_page'], $data['cur_page']+1, $data['cur_page']+2);
+            }else{
+                $data['display_page'] = array($data['pages']-4, $data['pages']-3, $data['pages']-2, $data['pages']-1, $data['pages']);
+            }
+        }else{
+            for($i=1 ; $i <= $data['pages'] ; $i++){
+                array_push($data['display_page'],$i);
+            }
+        }
+        $data['best_seller'] = "";
+        $data['category_id'] = "";
+        $data['products'] = array_slice($data['results'],12*($data['cur_page']-1),12);
+        $data['ajax_url'] = base_url()."products/";
+        $data['ajax_redirect'] = base_url()."products/";
         $data['display_products'] = $this->load->view('display_products.php',$data,TRUE);
         $this->load->view('home_view.php',$data);
     }
@@ -200,9 +227,9 @@ class Products extends MY_Controller
         if($data['pages']>5){
             if($data['cur_page']<4){
                 $data['display_page'] = array(1,2,3,4,5);
-            } elseif($data['cur_page']<$data['pages']-2){
+            }elseif($data['cur_page']<$data['pages']-2){
                 $data['display_page'] = array($data['cur_page']-2, $data['cur_page']-1, $data['cur_page'], $data['cur_page']+1, $data['cur_page']+2);
-            } else{
+            }else{
                 $data['display_page'] = array($data['pages']-4, $data['pages']-3, $data['pages']-2, $data['pages']-1, $data['pages']);
             }
         }else{
@@ -248,7 +275,8 @@ class Products extends MY_Controller
         $json['products_view'] = $this->load->view('display_products.php',$data,TRUE);
         echo json_encode($json);
     }
-    public function get_sale_products_ajax(){
+    public function get_sale_products_ajax()
+    {
         $data = $this->get_products_ajax();
         $data['category_id'] = "";
         $data['filtered_all_products'] = array_filter($data['all_products'], function($item){
