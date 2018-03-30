@@ -10,6 +10,7 @@ class Products extends MY_Controller
     {
         $db = json_decode($this->db->get('/'),TRUE);
         $data['raw_all_products'] = $db['products'];
+        $data['page_name'] = ''; // don't delete this!!
         $data['discount'] = array_filter($data['raw_all_products'], function($item){
             return $item['discount'] > 0 && $item['status'];
         });
@@ -76,7 +77,7 @@ class Products extends MY_Controller
                 return $a['price'] - $b['price'];
             });
             $data['all_products'] = $data['raw_all_products'];
-        }  
+        }
         return $data;
     }
     public function index($page = 1)
@@ -216,6 +217,10 @@ class Products extends MY_Controller
         $data['ajax_redirect'] = base_url()."products/";
         $data['display_products'] = $this->load->view('display_products.php',$data,TRUE);
         $this->load->view('home_view.php',$data);
+    }
+    public function pay()
+    {
+        $db = json_decode($this->db->get("/"),TRUE);
     }
     /* ---- AJAX ---- */
     public function get_all_products_ajax()
