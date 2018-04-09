@@ -208,7 +208,7 @@ document.getElementById("contact-send").onclick = function(){
             detail: document.getElementById("contact-detail").value
         };
         $.ajax({
-            url: '<?php echo base_url()."contact/mail"; ?>',
+            url: '/contact/mail',
             type: 'POST',
             dataType: 'html',
             data: {

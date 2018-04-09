@@ -146,7 +146,7 @@ function displayCart(selector = ".inner-cart"){
         if((location.pathname.split("/").indexOf("home")<0 && location.pathname!=='') || location.pathname.split("/").indexOf("pay")>=0){
             message += "<h4 style=\"font-weight:bold;text-align:center;margin-top:30px;margin-bottom:30px;\">";
             message += "Giỏ hàng của bạn hiện đang trống.";
-            message += "<div style=\"margin-top:15px;margin-bottom:30px;\"><a href=\"http://localhost/stationery/home\" class=\"btn btn-primary\"><i class=\"fa fa-shopping-cart\"></i>&nbsp;&nbsp;Tiếp tục mua hàng</a></div>";
+            message += "<div style=\"margin-top:15px;margin-bottom:30px;\"><a href=\"/home\" class=\"btn btn-primary\"><i class=\"fa fa-shopping-cart\"></i>&nbsp;&nbsp;Tiếp tục mua hàng</a></div>";
             message += "</h4>";
         }else{
             message += "<h4 style=\"font-weight:bold;text-align:center;margin-top:30px;margin-bottom:30px;\">";

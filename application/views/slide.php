@@ -17,7 +17,7 @@
             </div>
             <div class="inner-category" style="display:none;">
 <?php foreach($category as $key=>$value){ ?>
-                <div class="category-item"><a href="<?php echo base_url()."home/category/".$key; ?>"><?php echo $value; ?></a></div>
+                <div class="category-item"><a href="<?php echo "/home/category/".$key; ?>"><?php echo $value; ?></a></div>
 <?php } ?>
             </div>
         </div>

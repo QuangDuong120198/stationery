@@ -7,31 +7,31 @@
 <title><?php echo $title;?></title>
 <script src="/bootstrap/js/jquery.js"></script>
 <link rel="icon" href="<?php echo $constants['logo'] ? $constants['logo'] : ''; ?>" />
-<link rel="stylesheet" type="text/css" href="<?php echo base_url()."bootstrap/js/slick/slick.css"; ?>" />
-<link rel="stylesheet" type="text/css" href="<?php echo base_url()."bootstrap/js/slick/slick-theme.css"; ?>" />
-<link rel="stylesheet" type="text/css" href="<?php echo base_url()."bootstrap/css/normalize.css"; ?>" />
-<link rel="stylesheet" type="text/css" href="<?php echo base_url()."bootstrap/css/bootstrap.css"; ?>" />
-<link rel="stylesheet" type="text/css" href="<?php echo base_url()."bootstrap/css/bootstrap-theme.css"; ?>" />
-<link rel="stylesheet" type="text/css" href="<?php echo base_url()."bootstrap/css/home-style.css"; ?>" />
+<link rel="stylesheet" type="text/css" href="/bootstrap/js/slick/slick.css" />
+<link rel="stylesheet" type="text/css" href="/bootstrap/js/slick/slick-theme.css" />
+<link rel="stylesheet" type="text/css" href="/bootstrap/css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap-theme.css" />
+<link rel="stylesheet" type="text/css" href="/bootstrap/css/home-style.css" />
 <style>
 @font-face{
     font-family: 'FontAwesome';
-    src: url('<?php echo base_url()."bootstrap/css/font-awesome/fonts/fontawesome-webfont.eot?v=4.7.0"; ?>');
-    src: url('<?php echo base_url()."bootstrap/css/font-awesome/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0"; ?>') format('embedded-opentype'),
-         url('<?php echo base_url()."bootstrap/css/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0"; ?>') format('woff2'),
-         url('<?php echo base_url()."bootstrap/css/font-awesome/fonts/fontawesome-webfont.woff?v=4.7.0"; ?>') format('woff'),
-         url('<?php echo base_url()."bootstrap/css/font-awesome/fonts/fontawesome-webfont.ttf?v=4.7.0"; ?>') format('truetype'),
-         url('<?php echo base_url()."/bootstrap/css/font-awesome/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular"; ?>') format('svg');
+    src: url('/bootstrap/css/font-awesome/fonts/fontawesome-webfont.eot?v=4.7.0');
+    src: url('/bootstrap/css/font-awesome/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0') format('embedded-opentype'),
+         url('/bootstrap/css/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2'),
+         url('/bootstrap/css/font-awesome/fonts/fontawesome-webfont.woff?v=4.7.0') format('woff'),
+         url('/bootstrap/css/font-awesome/fonts/fontawesome-webfont.ttf?v=4.7.0') format('truetype'),
+         url('/bootstrap/css/font-awesome/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 </style>
-<link rel="stylesheet" type="text/css" href="<?php echo base_url()."bootstrap/css/font-awesome/css/font-awesome.min.css"; ?>" />
-<link rel="stylesheet" type="text/css" href="<?php echo base_url()."bootstrap/css/snackjs.css"; ?>" />
-<script src="<?php echo base_url()."bootstrap/js/snack.js"; ?>"></script>
-<script src="<?php echo base_url()."bootstrap/js/JSONpolyfill.js"; ?>"></script>
-<script src="<?php echo base_url()."bootstrap/js/array_number_polyfill.js"; ?>"></script>
-<script src="<?php echo base_url()."bootstrap/js/slick/slick.js"; ?>"></script>
-<script src="<?php echo base_url()."bootstrap/js/cookie.js"; ?>"></script>
-<script src="<?php echo base_url()."bootstrap/js/cart.js"; ?>"></script>
-<script src="<?php echo base_url()."bootstrap/js/bootstrap.js"; ?>"></script>
+<link rel="stylesheet" type="text/css" href="/bootstrap/css/font-awesome/css/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css" href="/bootstrap/css/snackjs.css" />
+<script src="/bootstrap/js/snack.js"></script>
+<script src="/bootstrap/js/JSONpolyfill.js"></script>
+<script src="/bootstrap/js/array_number_polyfill.js"></script>
+<script src="/bootstrap/js/slick/slick.js"></script>
+<script src="/bootstrap/js/cookie.js"></script>
+<script src="/bootstrap/js/cart.js"></script>
+<script src="/bootstrap/js/bootstrap.js"></script>

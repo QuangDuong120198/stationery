@@ -117,8 +117,8 @@ class Home extends MY_Controller
                 array_push($data['display_page'],$i);
             }
         }
-        $data['ajax_url'] = base_url()."home/get_all_products_ajax/";
-        $data['ajax_redirect'] = base_url()."home/index/";
+        $data['ajax_url'] = "/home/get_all_products_ajax/";
+        $data['ajax_redirect'] = "/home/index/";
         $data['best_seller'] = $this->load->view('best_seller.php',$data,TRUE);
         $data['products'] = array_slice($data['all_products'], 12*($data['cur_page']-1), 12);
         $data['display_products'] = $this->load->view('display_products.php',$data,TRUE);
@@ -150,8 +150,8 @@ class Home extends MY_Controller
                 array_push($data['display_page'],$i);
             }
         }
-        $data['ajax_url'] = base_url()."home/get_sale_products_ajax/";
-        $data['ajax_redirect'] = base_url()."home/sale/";
+        $data['ajax_url'] = "/home/get_sale_products_ajax/";
+        $data['ajax_redirect'] = "/home/sale/";
         $data['best_seller'] = ""; // don't delete this!!
         $data['products'] = array_slice($data['all_products'], 12*($data['cur_page']-1), 12);
         $data['display_products'] = $this->load->view('display_products.php',$data,TRUE);
@@ -189,8 +189,8 @@ class Home extends MY_Controller
         }
         $data['best_seller'] = "";
         $data['products'] = array_slice($data['filtered_all_products'], 12*($data['cur_page']-1), 12);
-        $data['ajax_url'] = base_url()."home/get_products_by_category_ajax/".$category_id."/";
-        $data['ajax_redirect'] = base_url()."home/category/".$category_id."/";
+        $data['ajax_url'] = "/home/get_products_by_category_ajax/".$category_id."/";
+        $data['ajax_redirect'] = "/home/category/".$category_id."/";
         $data['category_id'] = $category_id;
         $data['display_products'] = $this->load->view('display_products.php',$data,TRUE);
         $this->load->view('home_view.php',$data);

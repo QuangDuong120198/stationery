@@ -35,11 +35,11 @@
 <?php endforeach; ?>
                 <li><a href="javascript:void(0)" data-page="<?php echo $cur_page>=$pages ? $pages : $cur_page + 1; ?>" title="Trang sau"><i class="fa fa-chevron-right"></i></a></li>
 <?php else: ?>
-                <li><a href="<?php echo base_url()."/home/search/?keyword=".$keyword."&page=".($cur_page<=1 ? 1 : $cur_page-1); ?>" title="Trang trước"><i class="fa fa-chevron-left"></i></a></li>
+                <li><a href="<?php echo "/home/search/?keyword=".$keyword."&page=".($cur_page<=1 ? 1 : $cur_page-1); ?>" title="Trang trước"><i class="fa fa-chevron-left"></i></a></li>
 <?php foreach($display_page as $row):?>
-                <li><a href="<?php echo base_url()."/home/search/?keyword=".$keyword."&page=".$row; ?>" <?php echo $row==$cur_page ? 'style="background-color:#0366d6;color:#fff;"' : ''; ?>><?php echo $row; ?></a></li>
+                <li><a href="<?php echo "/home/search/?keyword=".$keyword."&page=".$row; ?>" <?php echo $row==$cur_page ? 'style="background-color:#0366d6;color:#fff;"' : ''; ?>><?php echo $row; ?></a></li>
 <?php endforeach; ?>
-                <li><a href="<?php echo base_url()."/home/search/?keyword=".$keyword."&page=".($cur_page>=$pages ? $pages : $cur_page + 1); ?>"  title="Trang sau"><i class="fa fa-chevron-right"></i></a></li>
+                <li><a href="<?php echo "/home/search/?keyword=".$keyword."&page=".($cur_page>=$pages ? $pages : $cur_page + 1); ?>"  title="Trang sau"><i class="fa fa-chevron-right"></i></a></li>
 <?php endif; ?>
             </ul>
         </div>
@@ -82,7 +82,7 @@
                                         <p class="add-success"><i class="fa fa-check"></i>&nbsp;&nbsp;Đã thêm vào giỏ hàng</p>
 <?php endif; ?>
                                         <div class="product-type">
-                                            <i class="fa fa-tags"></i>&nbsp;&nbsp;<a href="<?php echo base_url()."home/category/".$row['type']['id']; ?>"><?php echo $row['type']['name']; ?></a>
+                                            <i class="fa fa-tags"></i>&nbsp;&nbsp;<a href="<?php echo "/home/category/".$row['type']['id']; ?>"><?php echo $row['type']['name']; ?></a>
                                         </div>
                                     </div>
                                 </div>
@@ -109,7 +109,7 @@ $(function(){
 <?php if($page_name!=="search"):?>
         loadPage(cur_page,"<?php echo $ajax_url; ?>","<?php echo $ajax_redirect; ?>");
 <?php else:?>
-        window.location.href = "<?php echo base_url()."home/search/?keyword=".$keyword."&page="; ?>" + cur_page;
+        window.location.href = "<?php echo "/home/search/?keyword=".$keyword."&page="; ?>" + cur_page;
 <?php endif; ?>
     });
     displayCart();
