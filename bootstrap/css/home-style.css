@@ -1,3 +1,6 @@
+sup b {
+  color: #ff0000;
+}
 @-webkit-keyframes ringing {
   0% {
     -webkit-transform: rotate(0);
@@ -123,10 +126,10 @@
   }
 }
 .placeholder-loading {
-  -webkit-animation: placeholder-loading 1s linear 0s infinite normal forwards;
-  -moz-animation: placeholder-loading 1s linear 0s infinite normal forwards;
-  -o-animation: placeholder-loading 1s linear 0s infinite normal forwards;
-  animation: placeholder-loading 1s linear 0s infinite normal forwards;
+  -webkit-animation: placeholder-loading 1s linear 0s infinite normal forwards running;
+  -moz-animation: placeholder-loading 1s linear 0s infinite normal forwards running;
+  -o-animation: placeholder-loading 1s linear 0s infinite normal forwards running;
+  animation: placeholder-loading 1s linear 0s infinite normal forwards running;
   background: #f6f7f8;
   background: linear-gradient(90deg, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
   background-size: 800px 104px;
@@ -154,10 +157,10 @@
   color: #fff;
   outline: 0!important;
   background-color: #00c;
-  background-image: -webkit-linear-gradient(#8080ff, #00c);
-  background-image: -moz-linear-gradient(#8080ff, #00c);
-  background-image: -o-linear-gradient(#8080ff, #00c);
-  background-image: linear-gradient(#8080ff, #00c);
+  background-image: -webkit-linear-gradient(180deg, #8080ff, #00c);
+  background-image: -moz-linear-gradient(180deg, #8080ff, #00c);
+  background-image: -o-linear-gradient(180deg, #8080ff, #00c);
+  background-image: linear-gradient(180deg, #8080ff, #00c);
 }
 .mybtn:focus,
 .mybtn:hover {
@@ -165,10 +168,10 @@
   color: #fff;
   outline: 0!important;
   background-color: #00c;
-  background-image: -webkit-linear-gradient(#8080ff, #00c);
-  background-image: -moz-linear-gradient(#8080ff, #00c);
-  background-image: -o-linear-gradient(#8080ff, #00c);
-  background-image: linear-gradient(#8080ff, #00c);
+  background-image: -webkit-linear-gradient(180deg, #8080ff, #00c);
+  background-image: -moz-linear-gradient(180deg, #8080ff, #00c);
+  background-image: -o-linear-gradient(180deg, #8080ff, #00c);
+  background-image: linear-gradient(180deg, #8080ff, #00c);
 }
 .banner {
   position: relative;
@@ -231,16 +234,15 @@
 }
 .banner .stuffs .search button,
 .banner .stuffs .search input {
-  border-radius: 0;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  -o-border-radius: 0;
   outline: 0;
 }
 .banner .products-in-cart {
   position: absolute;
   z-index: 5;
   background-color: #ff0000;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -o-border-radius: 5px;
   border-radius: 5px;
   font-weight: bold;
   padding: 0 5px;
@@ -301,6 +303,9 @@
   position: absolute;
   z-index: 5;
   background-color: #ff0000;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -o-border-radius: 5px;
   border-radius: 5px;
   font-weight: bold;
   padding: 0 5px;
@@ -310,15 +315,11 @@
 .menu {
   color: #fff;
   background-color: #00c;
-  background-image: -webkit-linear-gradient(#8080ff, #00c);
-  background-image: -moz-linear-gradient(#8080ff, #00c);
-  background-image: -o-linear-gradient(#8080ff, #00c);
-  background-image: linear-gradient(#8080ff, #00c);
   background: #00c;
-  background: -webkit-linear-gradient(#8080ff, #00c);
-  background: -moz-linear-gradient(#8080ff, #00c);
-  background: -o-linear-gradient(#8080ff, #00c);
-  background: linear-gradient(#8080ff, #00c);
+  background-image: -webkit-linear-gradient(180deg, #8080ff, #00c);
+  background-image: -moz-linear-gradient(180deg, #8080ff, #00c);
+  background-image: -o-linear-gradient(180deg, #8080ff, #00c);
+  background-image: linear-gradient(180deg, #8080ff, #00c);
 }
 .menu button {
   color: #fff;
@@ -401,6 +402,12 @@
   border: 1px solid #8080ff;
   margin-bottom: 15px;
 }
+.slide .category .category-item-lg {
+  border-bottom: 1px solid #8080ff;
+}
+.slide .category .category-item {
+  border-bottom: 1px solid #8080ff;
+}
 .slide .category .inner-category {
   max-height: 360px;
   overflow: auto;
@@ -450,10 +457,10 @@
   margin-bottom: 15px;
 }
 .contact:hover div .fa-phone {
-  -webkit-animation: ringing 1s ease-in-out infinite;
-  -moz-animation: ringing 1s ease-in-out infinite;
-  -o-animation: ringing 1s ease-in-out infinite;
-  animation: ringing 1s ease-in-out 0s infinite;
+  -webkit-animation: ringing 1s ease-in-out 0s infinite normal forwards running;
+  -moz-animation: ringing 1s ease-in-out 0s infinite normal forwards running;
+  -o-animation: ringing 1s ease-in-out 0s infinite normal forwards running;
+  animation: ringing 1s ease-in-out 0s infinite normal forwards running;
 }
 .all-products .panel .panel-header {
   font-size: 120%;
@@ -469,10 +476,10 @@
   color: #fff;
   font-weight: bold;
   background: #00c;
-  background: -webkit-linear-gradient(#8080ff, #00c);
-  background: -moz-linear-gradient(#8080ff, #00c);
-  background: -o-linear-gradient(#8080ff, #00c);
-  background: linear-gradient(#8080ff, #00c);
+  background-image: -webkit-linear-gradient(180deg, #8080ff, #00c);
+  background-image: -moz-linear-gradient(180deg, #8080ff, #00c);
+  background-image: -o-linear-gradient(180deg, #8080ff, #00c);
+  background-image: linear-gradient(180deg, #8080ff, #00c);
 }
 .panel .panel-body {
   padding: 8px;
@@ -491,23 +498,27 @@
   display: inline-block;
 }
 .panel .panel-body .myClass li button {
-  background-color: #ccc;
-  border: 0;
+  background-color: #fff;
+  border: 1px solid #00c;
   margin: 0 5px;
   padding: 0 5px;
   color: transparent;
   width: 10px;
-  height: 10px;
+  height: 12px;
   outline: 0;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -o-border-radius: 50%;
   border-radius: 50%;
 }
 .panel .panel-body .myClass li button:focus {
   outline: 0;
 }
+.panel .panel-body .myClass .slick-active button {
+  background-color: #00c;
+}
 .panel .panel-body .boxes {
-  margin-left: 40px;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin: 15px;
 }
 .panel .panel-body input[type="checkbox"] {
   display: none;
@@ -540,6 +551,9 @@
   width: 10px;
   top: -5px;
   left: 5px;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -o-border-radius: 0;
   border-radius: 0;
   opacity: 1;
   border-top-color: transparent;
@@ -637,8 +651,15 @@
   color: #00c;
   margin-bottom: 3px;
 }
-.footer .google {
+.footer .facebook iframe {
+  width: 300px;
+  height: 300px;
+}
+.footer .google iframe {
   padding: 0 30px;
+  border: 0;
+  width: 100%;
+  height: 300px;
 }
 .modal-dark {
   background-color: #333!important;
@@ -652,6 +673,9 @@
 .modal-dark .modal-header .close {
   color: #f5f5f0;
 }
+.modal-dark .modal-body {
+  margin-bottom: 20px;
+}
 .modal-dark .carousel-control.custom {
   width: auto;
   background: none;
@@ -662,9 +686,24 @@
   border-top: 1px solid #f5f5f0;
   padding: 10px 0;
 }
+.modal-dark .cart-item img {
+  width: 300px;
+}
+@media (max-width: 720px) {
+  .modal-dark .cart-item img {
+    width: 100%;
+  }
+}
 .modal-dark .cart-item input {
   color: #000;
-  width: 60px;
+}
+.modal-dark .item img {
+  width: 300px;
+}
+@media (max-width: 630px) {
+  .modal-dark .item img {
+    width: 100%;
+  }
 }
 .modal-dark .item .product-price {
   font-size: 16px;
@@ -710,9 +749,6 @@
 .modal-dark .pay #pay {
   font-weight: bold;
   color: #f5f5f0;
-}
-.modal-dark img {
-  width: 100%;
 }
 .modal-dark button {
   outline: 0!important;

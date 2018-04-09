@@ -7,7 +7,7 @@
             </div>
             <div class="inner-category">
 <?php foreach($category as $key=>$value){ ?>
-                <div class="category-item-lg"><a href="<?php echo base_url()."products/category/".$key; ?>"><?php echo $value; ?></a></div>
+                <div class="category-item-lg"><a href="<?php echo "/home/category/".$key; ?>"><?php echo $value; ?></a></div>
 <?php }?>
             </div>
         </div>
@@ -15,9 +15,9 @@
             <div id="category-toggle">
                 <a href="javascript:void(0)" class="category-header mybtn"><span>DANH MỤC&nbsp;<i class="fa fa-chevron-down" style="float:right;"></i></span></a>
             </div>
-            <div class="inner-category">
+            <div class="inner-category" style="display:none;">
 <?php foreach($category as $key=>$value){ ?>
-                <div class="category-item"><a href="<?php echo base_url()."products/category/".$key; ?>"><?php echo $value; ?></a></div>
+                <div class="category-item"><a href="<?php echo base_url()."home/category/".$key; ?>"><?php echo $value; ?></a></div>
 <?php } ?>
             </div>
         </div>
@@ -34,18 +34,14 @@
                 <li data-target="#advertisement" data-slide-to="2"></li>
             </ol>
             <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <div class="item-inner" style="background-color:red;"></div>
+<?php $i=0; foreach($constants['slide'] as $row):?>
+<?php if($i<3):?>
+                <div <?php echo $i==0 ? "class=\"item active\"" : "class=\"item\""; ?>>
+                    <div class="item-inner" style="background-image:url(<?php echo $row; ?>)"></div>
                     <div class="carousel-caption"></div>
                 </div>
-                <div class="item">
-                    <div class="item-inner" style="background-color:blue;"></div>
-                    <div class="carousel-caption"></div>
-                </div>
-                <div class="item">
-                    <div class="item-inner" style="background-color:lime;"></div>
-                    <div class="carousel-caption"></div>
-                </div>
+<?php endif; ?>
+<?php $i++; endforeach;?>
             </div>
             <a class="left carousel-control" href="#advertisement" role="button" data-slide="prev">
                 <span class="fa fa-chevron-left" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);" aria-hidden="true"></span>

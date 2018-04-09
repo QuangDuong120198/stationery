@@ -3,7 +3,9 @@
     <div class="container">
         <div class="row banner hidden-xs">
             <div class="col-lg-3 col-md-3 col-sm-3 hidden-xs" style="text-align:center">
-                <img class="logo" alt="Văn phòng phẩm Xuân Thủy" src="<?php echo ($constants['logo']? $constants['logo'] : ''); ?>" />
+                <a href="/">
+                    <img class="logo" alt="Văn phòng phẩm Xuân Thủy" src="<?php echo ($constants['logo']? $constants['logo'] : ''); ?>" />
+                </a>
             </div>
             <div class="col-lg-9 col-md-9 col-sm-9 hidden-xs">
                 <span class="contact">
@@ -11,12 +13,12 @@
                     <div><i class="fa fa-envelope"></i>&nbsp;<?php echo $constants['mail']? $constants['mail'] : ''; ?></div>
                 </span>
                 <h2 class="title">
-                    <a href="<?php echo base_url().'home'; ?>">Văn phòng phẩm Xuân Thủy</a>
-                    <p><?php echo $constants['address']? $constants['address']: '';?></p>
+                    <a href="/"><strong>Văn phòng phẩm Xuân Thủy</strong></a>
+                    <p><strong><?php echo $constants['address']? $constants['address']: '';?></strong></p>
                 </h2>
                 <div class="stuffs">
                     <div class="search">
-                        <form method="get" action="<?php echo base_url()."products/search/"; ?>">
+                        <form method="get" action="/home/search/">
                             <div class="input-group">
                                 <input type="text" class="form-control" name="keyword" placeholder="Nhập từ tìm kiếm..." autocomplete="off" />
                                 <span class="input-group-btn">
@@ -41,11 +43,15 @@
         <div class="row" style="padding-left:10px;margin-left:30px;margin-right:2px">
             <div class="col-xxs-12 banner-xs">
                 <div style="position:relative;">
-                    <img src="<?php echo ($constants['logo'] ? $constants['logo'] : ''); ?>" alt="logo" />
+                    <a href="/">
+                        <img src="<?php echo ($constants['logo'] ? $constants['logo'] : ''); ?>" alt="logo" />
+                    </a>
                     <span style="position:absolute;z-index:2;top:15px;font-family:'Palatino Linotype','Linotype', 'Book-Antiqua',serif;font-weight:bold;color:#0000cc;">
-                        <a href="<?php echo base_url().'home'; ?>">
-                            <span style="font-size:14px;">Văn phòng phẩm</span><br />
-                            <span style="font-size:22px;">Xuân Thủy</span>
+                        <a href="/">
+                            <strong>
+                                <span style="font-size:14px;">Văn phòng phẩm</span><br />
+                                <span style="font-size:22px;">Xuân Thủy</span>
+                            </strong>
                         </a>
                     </span>
                 </div>
@@ -63,7 +69,7 @@
                                 <div class="back">
                                     <button type="button" class="btn mybtn"><i class="fa fa-arrow-left"></i></button>
                                 </div>
-                                <form method="get" action="<?php echo base_url()."products/search/"; ?>">
+                                <form method="get" action="/home/search/">
                                     <div class="input-group">
                                         <input class="form-control" type="text" name="keyword" placeholder="Nhập từ tìm kiếm..." />
                                         <span class="input-group-btn">
@@ -86,10 +92,10 @@
         </div>
         <div class="collapse navbar-collapse" id="menu">
             <ul class="nav navbar-nav">
-                <li><a href="<?php echo base_url().'products'; ?>" <?php echo $page_name=='Products' ? 'style="background-color:#333399;"' : ''; ?>>Sản phẩm</a></li>
-                <li><a href="<?php echo base_url().'introduce'; ?>" <?php echo $page_name=='Introduce' ? 'style="background-color:#333399;"' : ''; ?>>Giới thiệu</a></li>
-                <li><a href="<?php echo base_url().'products/sale'; ?>" <?php echo $page_name=='Sale' ? 'style="background-color:#333399;"' : ''; ?>>Khuyến mại</a></li>
-                <li><a href="<?php echo base_url().'contact'; ?>" <?php echo $page_name=='Contact' ? 'style="background-color:#333399;"' : ''; ?>>Liên hệ</a></li>
+                <li><a href="<?php echo base_url(); ?>" <?php echo $page_name=='Products' ? 'style="background-color:#333399;"' : ''; ?>>Sản phẩm</a></li>
+                <li><a href="<?php echo base_url()."introduce"; ?>" <?php echo $page_name=='Introduce' ? 'style="background-color:#333399;"' : ''; ?>>Giới thiệu</a></li>
+                <li><a href="<?php echo base_url()."home/sale"; ?>" <?php echo $page_name=='Sale' ? 'style="background-color:#333399;"' : ''; ?>>Khuyến mại</a></li>
+                <li><a href="<?php echo base_url()."contact"; ?>" <?php echo $page_name=='Contact' ? 'style="background-color:#333399;"' : ''; ?>>Liên hệ</a></li>
             </ul>
         </div>
     </div>

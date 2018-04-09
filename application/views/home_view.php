@@ -5,6 +5,7 @@
 <?php echo $headtag; ?>
 </head>
 <body style="padding-right:0!important">
+<?php echo $browser; ?>
 <?php echo $cart; ?>
 <div class="container-fluid">
 
@@ -36,9 +37,7 @@
 </div>
 </body>
 <script>
-validateCookie();
-total();
-displayCart();
+validateCookie();total();displayCart();
 function total(){
     if(Cookies.getJSON("cart")){
         var _cookie_ = Cookies.getJSON("cart");
@@ -48,10 +47,14 @@ function total(){
             total += parseInt(_cookie_[i].amount) * parseInt(_cookie_[i].price)*(100-_cookie_[i].discount)/100;
         }
         if(total > 0){
-            document.getElementById("shopping-list").getElementsByClassName("pay")[0].getElementsByTagName("div")[0].innerHTML = "<button type=\"button\" class=\"btn btn-default back\" data-dismiss=\"modal\"><i class=\"fa fa-chevron-left\"></i>&nbsp;Tiếp tục mua hàng</button><a href=\"<?php echo base_url()."products/pay"; ?>\" class=\"btn btn-primary\" id=\"pay\">Thanh toán</button>";
+            if(document.getElementById("shopping-list").getElementsByClassName("pay").length){
+                document.getElementById("shopping-list").getElementsByClassName("pay")[0].getElementsByTagName("div")[0].innerHTML = "<button type=\"button\" class=\"btn btn-default back\" data-dismiss=\"modal\"><i class=\"fa fa-chevron-left\"></i>&nbsp;Tiếp tục mua hàng</button><a href=\"/home/pay\" class=\"btn btn-primary\" id=\"pay\">Thanh toán</button>";
+            }
             document.getElementById("shopping-list").getElementsByClassName("total")[0].innerHTML = "Tổng:  "+parseInt(total).format(0,3)+ " Đ";
         }else{
-            document.getElementById("shopping-list").getElementsByClassName("pay")[0].getElementsByTagName("div")[0].innerHTML = "";
+            if(document.getElementById("shopping-list").getElementsByClassName("pay").length){
+                document.getElementById("shopping-list").getElementsByClassName("pay")[0].getElementsByTagName("div")[0].innerHTML = "";
+            }
             document.getElementById("shopping-list").getElementsByClassName("total")[0].innerHTML = "";
         }
     }
@@ -68,6 +71,7 @@ function loadPage(page = 1, url = '', redirect = '', category_id = ''){
         timeout: 10000,
         beforeSend: function(){
             $('.all-products .discount, .all-products .product-name, .all-products .price').addClass('placeholder-loading').css('color','transparent');
+            $('.all-products .img-thumbnail').css('background-image','url()');
             $('html, body').animate({ scrollTop: $(".all-products").offset().top }, 500);
         },
         success: function(e){
@@ -106,6 +110,10 @@ $(function(){
             }
         ]
     });
+    $("[data-target='#shopping-list']").click(function(){
+        displayCart();
+        total();
+    });
     $("[data-target='#best-seller']").click(function(){
         var index = parseInt($(this).attr("data-slide-index"));
         $("#inner-best-seller").carousel(index);
@@ -130,7 +138,8 @@ $(function(){
         }
     });
     document.body.onresize = function(){
-        document.getElementsByClassName("google")[0].src = "https://www.google.com/maps/embed/v1/place?q=21.009265%2C%20105.824699&center=21.009265%2C%20105.824699&zoom=15&key=AIzaSyCv9KaAtbFQzS6sU0e4KrvdquCsklmm1Uc";
+        var src = document.getElementsByClassName("google")[0].getElementsByTagName("iframe")[0].src;
+        document.getElementsByClassName("google")[0].getElementsByTagName("iframe")[0].src = src;
         if($(window).width()>=992){
             document.getElementsByClassName("inner-category")[0].style.display = "block";
             document.getElementsByClassName("inner-category")[1].style.display = "block";
@@ -146,5 +155,12 @@ $(function(){
         }
     };
 });
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-116692782-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-116692782-1');
 </script>
 </html>

@@ -6,7 +6,7 @@
                 <h4 class="modal-title"><i class="fa fa-check"></i>&nbsp;Bán chạy</h4>
             </div>
             <div class="modal-body">
-                <div class="carousel" id="inner-best-seller">
+                <div class="carousel" data-interval="false" id="inner-best-seller">
                     <div class="carousel-inner" role="listbox" data-interval="false">
 <?php $k=0; foreach($top as $row): ?>
                         <div class="item <?php echo $k==0? 'active' : ''; ?>" data-product-id="<?php echo $row['id']; ?>" data-product-price="<?php echo $row['price']; ?>" data-product-discount="<?php echo $row['discount']; ?>" data-product-name="<?php echo $row["name"]; ?>">
@@ -14,7 +14,7 @@
                                 <div class="row">
                                     <div class="col-lg-8 col-md-8 col-sm-7 col-xs-7 col-xxs-12">
                                         <div class="text-center">
-                                            <img src="" alt="<?php echo $row['name']; ?>" />
+                                            <img src="<?php echo $row['image']=='' ? $constants['logo'] : $row['image']; ?>" alt="<?php echo $row['name']; ?>" />
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-4 col-sm-5 col-xs-5 col-xxs-12 center-xxs" style="padding-top:15px;">
@@ -22,7 +22,7 @@
                                 <?php if($row['discount']>0): ?>
                                         <p>
                                             <div class="product-price"><i class="fa fa-usd"></i>&nbsp;&nbsp;<?php echo number_format($row['price']*(100-$row['discount'])/100); ?>&nbsp;Đ</div>
-                                            <div><del><?php echo number_format($row['price']); ?>&nbsp;Đ</del></div>
+                                            <div><del><?php echo number_format($row['price']); ?>&nbsp;Đ</del>&nbsp;&nbsp;<b style="color:#f00;"><?php echo -$row['discount'].'%'; ?></b></div>
                                         </p>
                                 <?php else:?>
                                         <p class="product-price"><i class="fa fa-usd"></i>&nbsp;&nbsp;<?php echo number_format($row['price']); ?>&nbsp;Đ</p>
@@ -36,7 +36,7 @@
                                         <p class="add-success"><i class="fa fa-check"></i>&nbsp;&nbsp;Đã thêm vào giỏ hàng</p>
                                 <?php endif; ?>
                                         <div class="product-type">
-                                            <i class="fa fa-tags"></i>&nbsp;&nbsp;<a href="<?php echo base_url()."home/tag/".$row['type']['id']; ?>"><?php echo $row['type']['name']; ?></a>
+                                            <i class="fa fa-tags"></i>&nbsp;&nbsp;<a href="<?php echo base_url()."home/category/".$row['type']['id']; ?>"><?php echo $row['type']['name']; ?></a>
                                         </div>
                                     </div>
                                 </div>
@@ -61,7 +61,7 @@
 <?php $l=0; foreach($top as $row):?>
                         <div class="outer-item">
                             <div class="list-item" data-product-id="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#best-seller" data-slide-index="<?php echo $l; ?>">
-                                <div class="img-thumbnail" title="<?php echo $row['name']; ?>" style="background-image:url(<?php echo $row['image']; ?>);">
+                                <div class="img-thumbnail" title="<?php echo $row['name']; ?>" style="background-image:url(<?php echo $row['image']=='' ? $constants['logo'] : $row['image']; ?>);">
 <?php if($row['discount']>0):?>
                                     <span class="discount"><?php echo -$row['discount'].'%'; ?></span>
 <?php endif; ?>
