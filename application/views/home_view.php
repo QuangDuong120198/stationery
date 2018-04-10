@@ -77,7 +77,7 @@ function loadPage(page = 1, url = '', redirect = '', category_id = ''){
         success: function(e){
             $("#loadProduct").html(JSON.parse(e).products_view);
             if(window.history.pushState){
-                window.history.pushState(null,null,redirect+category_id+page);
+                window.history.pushState(null, null, redirect + category_id + page);
             }
         },
         error: function(){

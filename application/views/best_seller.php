@@ -19,22 +19,22 @@
                                     </div>
                                     <div class="col-lg-4 col-md-4 col-sm-5 col-xs-5 col-xxs-12 center-xxs" style="padding-top:15px;">
                                         <h4><strong><?php echo $row['name']; ?></strong></h4>
-                                <?php if($row['discount']>0): ?>
+<?php if($row['discount']>0): ?>
                                         <p>
                                             <div class="product-price"><i class="fa fa-usd"></i>&nbsp;&nbsp;<?php echo number_format($row['price']*(100-$row['discount'])/100); ?>&nbsp;Đ</div>
                                             <div><del><?php echo number_format($row['price']); ?>&nbsp;Đ</del>&nbsp;&nbsp;<b style="color:#f00;"><?php echo -$row['discount'].'%'; ?></b></div>
                                         </p>
-                                <?php else:?>
+<?php else:?>
                                         <p class="product-price"><i class="fa fa-usd"></i>&nbsp;&nbsp;<?php echo number_format($row['price']); ?>&nbsp;Đ</p>
-                                <?php endif; ?>
+<?php endif; ?>
                                         <p class="product-style"><i class="fa fa-archive"></i>&nbsp;&nbsp;Cách đóng gói: <?php echo $row['style']; ?></p>
                                         <p class="product-unit"><i class="fa fa-circle-o"></i>&nbsp;&nbsp;Đơn vị: <?php echo $row['unit']; ?></p>
-                                <?php if(!$row['status']): ?>
+<?php if(!$row['status']): ?>
                                         <button class="btn btn-danger">Đã hết hàng</button>
-                                <?php else: ?>
+<?php else: ?>
                                         <button class="btn btn-primary btn-cart"><i class="fa fa-cart-plus"></i>&nbsp;&nbsp;Đặt mua</button>
                                         <p class="add-success"><i class="fa fa-check"></i>&nbsp;&nbsp;Đã thêm vào giỏ hàng</p>
-                                <?php endif; ?>
+<?php endif; ?>
                                         <div class="product-type">
                                             <i class="fa fa-tags"></i>&nbsp;&nbsp;<a href="<?php echo base_url()."home/category/".$row['type']['id']; ?>"><?php echo $row['type']['name']; ?></a>
                                         </div>
